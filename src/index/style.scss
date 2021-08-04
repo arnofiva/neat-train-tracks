@@ -1,9 +1,4 @@
 
-$image-path: '../../node_modules/calcite-web/dist/img';
-$font-path: '../../node_modules/calcite-web/dist/fonts';
-
-@import "node_modules/calcite-web/dist/sass/calcite-web.scss";
-
 
 html,
 body,
@@ -13,3 +8,144 @@ body,
   margin: 0;
   padding: 0;
 }
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  color: white;
+  font-style: italic;
+  padding: 10px;
+}
+
+.main {
+  flex: 1 0 auto;
+}
+
+.footer {
+  flex-shrink: 0;
+  // height: 0px; // 300px;
+  background: rgb(36, 36, 36) !important;
+
+  padding-top: 0px !important;
+}
+
+.footer-content {
+  // height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.sections {
+  flex-shrink: 0;
+  /* display: flex; */
+  display: none;
+  justify-content: center;
+  margin: 10px;
+}
+
+.section-button {
+  height: 100%;
+  vertical-align: middle;
+}
+
+.section-button span {
+  font-size: 2.5em;
+}
+
+#sectioDetails {
+  width: 600px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.sectionTitle {
+  text-align: center;
+  font-size: 2em;
+  font-weight: "bold";
+}
+
+.sectionInfo {
+  text-align: center;
+}
+
+.profiles {
+  /* flex: 1 0 auto; */
+  padding: 0px;
+
+  /* display: flex;
+  justify-content: center; */
+}
+
+#leftProfile,
+#rightProfile {
+  // height: 45%;
+  width: 100%;
+  // padding: 15px;
+  /* margin-left: 10px;
+  margin-right: 10px; */
+}
+
+#rightProfile {
+  padding-top: 0px;
+  width: 86%;
+}
+
+// .esri-ui {
+//   inset: 0px 0px 0px !important;
+// }
+
+.esri-elevation-profile {
+  padding: 5px 5px;
+}
+
+.esri-elevation-profile__header {
+  display: none;
+}
+
+.esri-elevation-profile__main-container {
+  height: 120px;
+}
+
+#trackSwitch.esri-component {
+  box-shadow: none;
+
+  background-color: rgb(255, 255, 255, 0.1);
+  table {
+    color: white !important;
+  }
+}
+
+.track-switch-old,
+.track-switch-new {
+  color: #f8f8f8;
+  padding: 5px;
+}
+
+.track-switch-old {
+  border-bottom: solid #ff7d00 2px;
+}
+
+.track-switch-new {
+  border-bottom: solid #00ff00 2px;
+}
+
+.toggle-switch-input[type]:checked + .toggle-switch-track.toggle-white {
+  border-color: #ccc;
+  background-color: #f4f4f4;
+}
+
+.toggle-switch-input[type]:checked + .toggle-switch-track.toggle-white:after {
+  border-color: #959595;
+}
+
+#segments {
+  color: white;
+}
+

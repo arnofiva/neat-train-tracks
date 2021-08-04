@@ -104,8 +104,8 @@ module.exports = {
         '!.git/**',]
     }),
     ...entries.map(entry => new HtmlWebpackPlugin({
-      title: 'ArcGIS API for JavaScript Template',
-      description: 'ArcGIS API for JavaScript Template',
+      title: 'Zurich - Milano by Train',
+      description: 'Zurich - Milano by Train',
       template: `./src/template.js`,
       filename: `${entry}.html`,
       entry,
