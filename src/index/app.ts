@@ -202,7 +202,7 @@ const view = new SceneView({
   map,
   camera,
 
-  qualityProfile: "high",
+  // qualityProfile: "high",
 
   environment: {
     background: {
@@ -216,10 +216,10 @@ const view = new SceneView({
     color: fadedColor,
     fillOpacity: 1,
     haloOpacity: 0
-  },
+  }
   // padding: {
-    // top: 80,
-    // left: 100,
+  // top: 80,
+  // left: 100,
   // }
 });
 

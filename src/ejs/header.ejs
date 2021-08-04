@@ -24,13 +24,13 @@
 
     <link rel="stylesheet" href="https://js.arcgis.com/4.20/esri/themes/dark/main.css">
 
-
-
     <% for (var css in htmlWebpackPlugin.files.css) { %>
     <link href="<%= htmlWebpackPlugin.files.css[css] %>" rel="stylesheet">
     <% } %>
 
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title><%= htmlWebpackPlugin.options.title %></title>
 
     <meta name="description" content="<%= htmlWebpackPlugin.options.description %>" />
