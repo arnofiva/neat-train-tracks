@@ -12,8 +12,8 @@ module.exports = {
     (acc, entry) => {
       return {
         ...acc, [entry]: [
-          `./src/${entry}/app.ts`,
-          // `./src/${entry}/style.scss`
+          `./src/${entry}/main.ts`,
+          `./src/${entry}/style.scss`
         ]
       };
     }, {}
@@ -63,9 +63,10 @@ module.exports = {
       {
         test: /\.s[ac]ss$/i,
         use: [
-          process.env.NODE_ENV !== "production"
-            ? "style-loader"
-            : MiniCssExtractPlugin.loader,
+          // process.env.NODE_ENV !== "production"
+          //   ? "style-loader"
+          //   : MiniCssExtractPlugin.loader,
+          MiniCssExtractPlugin.loader,
           {
             loader: "css-loader",
           },
