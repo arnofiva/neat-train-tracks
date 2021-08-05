@@ -26,6 +26,9 @@ export default class App extends Widget {
   @property()
   scene = scene;
 
+  @property()
+  layout: "phone" | "tablet" | "desktop";
+
   constructor(props: AppProps) {
     super(props);
   }
@@ -35,20 +38,20 @@ export default class App extends Widget {
       tracks: this.tracks
     });
 
-    this.scene.view.on("click", (e) => {
-      this.trackProfiles.showNew = !this.trackProfiles.showNew;
-      this.updateProfiles();
+    window.addEventListener("resize", (e) => {
+      this.evaluateLayout();
     });
 
-    this.scene.view.on("key-down", async (e) => {
-      const num = Number.parseInt(e.key);
-      if (0 <= num && num <= 3) {
-        this.trackProfiles.section = num;
-        await this.updateProfiles();
-        this.scene.view.goTo(sections[num].camera);
+    document.addEventListener("keydown", async (e) => {
+      if (e.key === " ") {
+        await this.toggleTracks();
+      } else {
+        const num = Number.parseInt(e.key);
+        await this.selectSection(num);
       }
     });
 
+    this.evaluateLayout();
     this.updateProfiles();
   }
 
@@ -63,7 +66,9 @@ export default class App extends Widget {
               <h1>Zurich - Milano by Train</h1>
 
               <div class="column-6 tablet-column-3 phone-column-2">
-                <span class="placeholder">Track selector</span>
+                <div id="leftPadding">
+                  <span class="placeholder">Track selector</span>
+                </div>
               </div>
 
               <div class="column-18 tablet-column-6 phone-pre-2 phone-column-2">
@@ -120,7 +125,7 @@ export default class App extends Widget {
             </div>
 
             <div class="column-18 tablet-column-9 phone-column-6">
-              <div class="profiles interactive">{profiles}</div>
+              <div class="interactive">{profiles}</div>
             </div>
           </div>
         </div>
@@ -143,5 +148,54 @@ export default class App extends Widget {
     ]);
   });
 
-  toggle = document.getElementById("trackSwitchInput") as HTMLInputElement;
+  async toggleTracks() {
+    this.trackProfiles.showNew = !this.trackProfiles.showNew;
+    await this.updateProfiles();
+  }
+
+  async selectSection(section: number) {
+    if (0 <= section && section <= 3) {
+      this.trackProfiles.section = section;
+      await this.updateProfiles();
+      this.scene.view.goTo(sections[section].camera);
+    }
+  }
+
+  bindTopPadding(e: any) {
+    console.log("Bind", { e });
+  }
+
+  evaluateLayout() {
+    const width = window.innerWidth;
+
+    // this.scene.view.padding = {
+    //   top,
+    //   left
+    // };
+
+    if (860 <= width) {
+      this.layout = "desktop";
+      this.scene.view.padding = {
+        top: 50,
+        left: 220,
+        bottom: 200
+      };
+    } else if (480 <= width) {
+      this.layout = "tablet";
+      this.scene.view.padding = {
+        top: 60,
+        left: 40,
+        right: 40,
+        bottom: 150
+      };
+    } else {
+      this.layout = "phone";
+      this.scene.view.padding = {
+        top: 60,
+        // left: 50,
+        // right: 50,
+        bottom: 150
+      };
+    }
+  }
 }

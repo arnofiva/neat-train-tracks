@@ -53,30 +53,31 @@ body,
   text-align: center;
 }
 
-.profiles {
-  width: 100%;
-  padding-top: 20%; /* 100% = 1:1 Aspect Ratio */
-  position: relative;
-  @include respond-to($small){
-    padding-top: 55%;
-  }
-  @include respond-to($medium){
-    padding-top: 45%;
-  }
-  padding-top: 20%;
-}
-
-.profiles > div {
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-}
-
-// .esri-ui {
-//   inset: 0px 0px 0px !important;
+// .profiles {
+//   width: 100%;
+//   padding-top: 20%; /* 100% = 1:1 Aspect Ratio */
+//   position: relative;
+//   @include respond-to($small){
+//     padding-top: 55%;
+//   }
+//   @include respond-to($medium){
+//     padding-top: 45%;
+//   }
+//   padding-top: 20%;
 // }
+
+// .profiles > div {
+//   position: absolute;
+//   top: 0;
+//   left: 0;
+//   bottom: 0;
+//   right: 0;
+// }
+
+
+.esri-ui {
+  inset: 0px 0px 0px !important;
+}
 
 // .esri-elevation-profile {
   // background-color: unset;
@@ -87,7 +88,15 @@ body,
 // }
 
 .esri-elevation-profile__main-container {
-  height: calc(100% - 30px - 24px); // header minus paddings
+
+  @include respond-to($small){
+    height: 30vh;
+  }
+  @include respond-to($medium){
+    height: 15vh;
+  }
+  height: 20vh;
+  // height: calc(100% - 30px - 24px); // header minus paddings
   // background-color: #242424;
 }
 
