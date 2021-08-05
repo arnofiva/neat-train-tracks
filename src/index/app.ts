@@ -26,7 +26,6 @@ import ElevationProfileViewModel = require("esri/widgets/ElevationProfile/Elevat
 import promiseUtils = require("esri/core/promiseUtils");
 import watchUtils = require("esri/core/watchUtils");
 
-
 // Blue - Green
 
 // const slowColor = new Color("#00c8ff");
