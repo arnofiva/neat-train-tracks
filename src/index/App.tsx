@@ -6,7 +6,6 @@ import TrackProfiles from "./TrackProfiles";
 import { scene } from "./Scene";
 import Tracks from "./Tracks";
 import promiseUtils = require("esri/core/promiseUtils");
-import watchUtils = require("esri/core/watchUtils");
 import { slowColorFaded, fastColorFaded, Section } from "./constants";
 import { tracks2D, tracks3D } from "./layers";
 import TimeDistance from "./TimeDistance";
@@ -51,21 +50,30 @@ export default class App extends Widget {
 
     document.addEventListener("keydown", async (e) => {
       if (e.key === " ") {
-        await this.toggleTracks();
+        this.trackProfiles.selector.showNew = !this.trackProfiles.selector.showNew;
       } else {
         const num = Number.parseInt(e.key);
         await this.selectSection(num);
       }
     });
 
+    this.trackProfiles.selector.watch("showNew", () => {
+      this.updateProfiles();
+    });
+
     this.evaluateLayout();
     this.updateProfiles();
+
+    if (this.layout === "phone") {
+      this.selectSection(2);
+    }
   }
 
   public render() {
     const profiles = this.trackProfiles.render();
 
     const timeDistance = this.timeDistance.render();
+    const selector = this.trackProfiles.selector.render();
 
     return (
       <div>
@@ -74,11 +82,7 @@ export default class App extends Widget {
             <div class="column-24 tablet-column-9 phone-column-6">
               <h1>Zurich - Milan by Train</h1>
 
-              <div class="column-6 tablet-column-3 phone-column-2">
-                <div id="leftPadding">
-                  <span class="placeholder">Track selector</span>
-                </div>
-              </div>
+              <div class="column-6 tablet-column-3 phone-column-2">{selector}</div>
 
               <div class="column-18 tablet-column-6 phone-pre-2 phone-column-2 text-right">
                 {this.layout === "phone" ? timeDistance : <div></div>}
@@ -150,11 +154,6 @@ export default class App extends Widget {
       // await this.trackProfiles.update(this.showNew, this.section)
     ]);
   });
-
-  async toggleTracks() {
-    this.trackProfiles.showNew = !this.trackProfiles.showNew;
-    await this.updateProfiles();
-  }
 
   async selectSection(sectionIndex: number) {
     if (0 <= sectionIndex && sectionIndex <= 3) {

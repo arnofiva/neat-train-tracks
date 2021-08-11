@@ -93,7 +93,7 @@ module.exports = {
         options: {
           name: '[path][name].[ext]',
           outputPath: 'static/assets/',
-          publicPath: 'static/assets/',
+          publicPath: '/static/assets/',
         },
       },
     ]

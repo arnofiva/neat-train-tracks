@@ -4,7 +4,8 @@ import LabelClass from "esri/layers/support/LabelClass";
 import TileLayer from "esri/layers/TileLayer";
 import VectorTileLayer from "esri/layers/VectorTileLayer";
 import { SimpleRenderer } from "esri/renderers";
-import { LabelSymbol3D, TextSymbol3DLayer, PolygonSymbol3D, FillSymbol3DLayer } from "esri/symbols";
+import { LabelSymbol3D, TextSymbol3DLayer, PolygonSymbol3D, FillSymbol3DLayer, PointSymbol3D } from "esri/symbols";
+import IconSymbol3DLayer from "esri/symbols/IconSymbol3DLayer";
 
 export const hillshade = new TileLayer({
   portalItem: { id: "428539ef9cab4017b69d15a40a9ee98b" } // Dark
@@ -16,10 +17,36 @@ export const water = new VectorTileLayer({
 });
 
 export const pois = new FeatureLayer({
-  visible: false,
+  visible: true,
   portalItem: {
     id: "7ad19e912ce84d138ca6544610fa9643"
   },
+  renderer: new SimpleRenderer({
+    symbol: new PointSymbol3D({
+      symbolLayers: [
+        new IconSymbol3DLayer({
+          material: { color: [255, 255, 255] },
+          size: 1.5,
+          resource: {
+            primitive: "circle"
+          }
+        })
+      ],
+      callout: {
+        type: "line", // autocasts as new LineCallout3D()
+        size: 1.5,
+        color: [255, 255, 255]
+        // border: {
+        //   color: [50, 50, 50]
+        // }
+      },
+      verticalOffset: {
+        screenLength: 80,
+        maxWorldLength: 2000,
+        minWorldLength: 300
+      }
+    })
+  }),
   labelingInfo: [
     new LabelClass({
       labelExpressionInfo: {
@@ -29,26 +56,13 @@ export const pois = new FeatureLayer({
         symbolLayers: [
           new TextSymbol3DLayer({
             material: { color: [255, 255, 255] },
-            size: 12,
-            halo: {
-              color: [30, 30, 30, 0.8], // autocasts as Color
-              size: 1.5
-            }
+            size: 12
+            // halo: {
+            // color: [30, 30, 30, 0.8], // autocasts as Color
+            // size: 0
+            // }
           })
-        ],
-        callout: {
-          type: "line", // autocasts as new LineCallout3D()
-          size: 1.5,
-          color: [150, 150, 150],
-          border: {
-            color: [50, 50, 50]
-          }
-        },
-        verticalOffset: {
-          screenLength: 40,
-          maxWorldLength: 100,
-          minWorldLength: 20
-        }
+        ]
       })
     })
   ]

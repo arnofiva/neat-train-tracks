@@ -1,14 +1,14 @@
 import { property, subclass } from "esri/core/accessorSupport/decorators";
 import SceneView from "esri/views/SceneView";
 import Map = require("esri/Map");
-import { countries, hillshade, tracks2D, tracks3D, water } from "./layers";
+import { countries, hillshade, pois, tracks2D, tracks3D, water } from "./layers";
 import { Section } from "./constants";
 import Accessor = require("esri/core/Accessor");
 import Color = require("esri/Color");
 
 const map = new Map({
   ground: "world-elevation",
-  layers: [countries, hillshade, water, tracks2D, tracks3D]
+  layers: [countries, hillshade, water, pois, tracks2D, tracks3D]
 });
 
 const view = new SceneView({

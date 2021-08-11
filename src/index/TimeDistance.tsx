@@ -24,10 +24,11 @@ export default class TimeDistance extends Widget {
     const hours = Math.floor(time / 60);
 
     return (
-      <div>
+      <div class="time-distance">
         <h4>Time</h4>
         <span>
-          {hours}h {minutes}m
+          {hours ? `${hours}h ` : ""}
+          {minutes}m
         </span>
         <h4>Distance</h4>
         <span>{this.profile.distance.toFixed(1)}km</span>

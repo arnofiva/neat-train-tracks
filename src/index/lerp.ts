@@ -36,7 +36,6 @@ const objectLerp = <T extends LerpObject>(a: T, b: T, t: number, total?: number,
       const cameraA = a as Camera;
       const cameraB = b as Camera;
       const heading = numberLerp(cameraA.heading, cameraB.heading, t, total, 360);
-      console.log("Heading", cameraA.heading, cameraB.heading, heading);
       return new Camera({
         heading,
         position: objectLerp(cameraA.position, cameraB.position, t, total),

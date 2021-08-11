@@ -8,6 +8,7 @@ import { scene } from "./Scene";
 import { tsx } from "esri/widgets/support/widget";
 import Tracks from "./Tracks";
 import lerp from "./lerp";
+import TrackSelector from "./TrackSelector";
 
 const view = scene.view;
 
@@ -53,13 +54,18 @@ export default class TrackProfiles extends Widget {
   tracks: Tracks;
 
   @property()
+  selector = new TrackSelector();
+
+  @property({
+    aliasOf: "selector.showNew"
+  })
+  showNew: boolean;
+
+  @property()
   slowEP = createProfile(slowColor, slowColorFaded);
 
   @property()
   fastEP = createProfile(fastColor, fastColorFaded);
-
-  @property()
-  showNew = true;
 
   @property()
   private get activeEP() {
@@ -103,11 +109,12 @@ export default class TrackProfiles extends Widget {
   }
 
   render() {
-    this.slowEP.profiles.forEach((p) => (p.viewVisualizationEnabled = !this.showNew));
+    const showNew = this.showNew;
+    this.slowEP.profiles.forEach((p) => (p.viewVisualizationEnabled = !showNew));
     this.slowEP.input = this.tracks.slowEPInput(this.section);
 
     this.fastEP.input = this.tracks.fastEPInput(this.section);
-    this.fastEP.profiles.forEach((p) => (p.viewVisualizationEnabled = this.showNew));
+    this.fastEP.profiles.forEach((p) => (p.viewVisualizationEnabled = showNew));
 
     return <div>{this.activeEP.render()}</div>;
   }
