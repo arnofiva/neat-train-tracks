@@ -105,8 +105,8 @@ module.exports = {
         '!.git/**',]
     }),
     ...entries.map(entry => new HtmlWebpackPlugin({
-      title: 'Zurich - Milano by Train',
-      description: 'Zurich - Milano by Train',
+      title: 'Zurich - Milan by Train',
+      description: 'Zurich - Milan by Train',
       template: `./src/template.js`,
       filename: `${entry}.html`,
       entry,
