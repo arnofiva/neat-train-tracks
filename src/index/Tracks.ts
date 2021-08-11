@@ -66,8 +66,6 @@ async function loadTracks() {
 
     const simplePoints = simplify(points, 10, false);
 
-    console.log(`From ${points.length} to ${simplePoints.length}`);
-
     f.geometry = new Polyline({
       spatialReference: result.spatialReference,
       paths: [simplePoints.map((p: any) => [p.x, p.y, p.z])]

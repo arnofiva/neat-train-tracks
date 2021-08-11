@@ -9,6 +9,7 @@ import promiseUtils = require("esri/core/promiseUtils");
 import { slowColorFaded, fastColorFaded, Section } from "./constants";
 import { tracks2D, tracks3D } from "./layers";
 import TimeDistance from "./TimeDistance";
+import Legend from "./Legend";
 
 export interface AppProps extends __esri.WidgetProperties {
   tracks: Tracks;
@@ -24,6 +25,9 @@ export default class App extends Widget {
 
   @property()
   timeDistance: TimeDistance;
+
+  @property()
+  legend: Legend;
 
   @property()
   scene = scene;
@@ -42,6 +46,10 @@ export default class App extends Widget {
 
     this.timeDistance = new TimeDistance({
       profile: this.trackProfiles
+    });
+
+    this.legend = new Legend({
+      selector: this.trackProfiles.selector
     });
 
     window.addEventListener("resize", (e) => {
@@ -74,6 +82,7 @@ export default class App extends Widget {
 
     const timeDistance = this.timeDistance.render();
     const selector = this.trackProfiles.selector.render();
+    const legend = this.legend.render();
 
     return (
       <div>
@@ -97,20 +106,16 @@ export default class App extends Widget {
 
         <div class="footer">
           <div class="grid-container">
-            <div class="column-6 tablet-column-6 phone-column-1">
-              <span class="placeholder tablet-hide">Legend</span>
-            </div>
+            <div class="column-6 tablet-column-6 phone-column-1">{this.layout === "desktop" ? legend : <div></div>}</div>
 
             <div class="column-18 tablet-column-6 phone-column-2">
               <span class="placeholder tablet-hide">Sections</span>
             </div>
 
+            <div class="column-12 tablet-column-3 phone-column-3">{this.layout === "tablet" ? legend : <div></div>}</div>
+
             <div class="column-12 tablet-column-9 phone-column-3">
               <span class="placeholder tablet-only">Sections (Tablet)</span>
-            </div>
-
-            <div class="column-12 tablet-column-3 phone-column-3">
-              <span class="placeholder tablet-only">Legend (Tablet)</span>
             </div>
 
             <div class="column-8 tablet-column-4 phone-column-2">
@@ -121,9 +126,7 @@ export default class App extends Widget {
               <span class="placeholder phone-show">Sections (Phone)</span>
             </div>
 
-            <div class="column-8 tablet-column-4 phone-column-2">
-              <span class="placeholder phone-show">Legend (phone)</span>
-            </div>
+            <div class="column-8 tablet-column-4 phone-column-2 text-right">{this.layout === "phone" ? legend : <div></div>}</div>
 
             {/* Footer 2nd part */}
 

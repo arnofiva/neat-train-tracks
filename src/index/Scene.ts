@@ -11,6 +11,8 @@ const map = new Map({
   layers: [countries, hillshade, water, pois, tracks2D, tracks3D]
 });
 
+map.ground.surfaceColor = new Color("#5D5D5D");
+
 const view = new SceneView({
   container: "viewDiv",
   // viewingMode: "local",
@@ -18,7 +20,7 @@ const view = new SceneView({
   map,
   camera: Section.TOTAL.camera,
 
-  // qualityProfile: "high",
+  qualityProfile: "high",
 
   environment: {
     background: {

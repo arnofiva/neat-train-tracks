@@ -28,7 +28,7 @@ export default class TimeDistance extends Widget {
         <h4>Time</h4>
         <span>
           {hours ? `${hours}h ` : ""}
-          {minutes}m
+          {minutes}min
         </span>
         <h4>Distance</h4>
         <span>{this.profile.distance.toFixed(1)}km</span>

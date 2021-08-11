@@ -6,6 +6,13 @@ $font-path: '../../node_modules/calcite-web/dist/fonts';
 // @import "node_modules/calcite-web/dist/sass/calcite-web.scss";
 @import "node_modules/calcite-web/dist/sass/calcite-web-dark.scss";
 
+$slow-color: #ff7d00;
+$slow-colorFaded: #9b5c20;
+
+$fast-colorFaded: #007f00;
+$fast-color: #00ff00;
+
+
 html,
 body,
 #app,
@@ -30,6 +37,10 @@ body,
 #app, .wrapper, .footer {
   z-index: 100;
   pointer-events: none;
+
+  color: rgb(220, 220, 220);
+  text-transform: uppercase !important;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .interactive {
@@ -37,8 +48,8 @@ body,
 }
 
 #app {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .footer {
@@ -46,6 +57,55 @@ body,
   padding-bottom: 15px;
 }
 
+.track-selector {
+  a {
+    color: white;
+    cursor: pointer;
+
+    text-decoration: none !important;
+  }
+
+  padding-bottom: 50px;
+}
+
+.time-distance {
+  h4 {
+    font-size: 1em;
+    margin: 0.75rem 0 0 0;
+  }
+
+  span {
+    font-size: 1.5em;
+  }
+}
+
+.legend {
+
+  h4 {
+    font-size: 1em;
+    // margin-top: 1em;
+  }
+
+  .elevation {
+    border-bottom: 1px solid white;
+  }
+
+  .track {
+    border-bottom: 2px solid white;
+  }
+
+  .fast {
+    border-bottom-color: $fast-color;
+  }
+
+  .slow {
+    border-bottom-color: $slow-color;
+  }
+}
+
+
+
+/* REMOVE!  */
 .grid-container .placeholder {
   width: 100%;
   display: block;
