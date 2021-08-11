@@ -39,6 +39,7 @@ body,
 
 .footer {
   background-color: rgb(0, 0, 0, 0);
+  padding-bottom: 15px;
 }
 
 .grid-container .placeholder {
@@ -79,13 +80,13 @@ body,
   inset: 0px 0px 0px !important;
 }
 
-// .esri-elevation-profile {
-  // background-color: unset;
-// }
+.esri-elevation-profile {
+  background-color: rgb(36, 36, 36, 0.8);
+}
 
-// .esri-elevation-profile__header {
-
-// }
+.esri-elevation-profile__header {
+  display: none;
+}
 
 .esri-elevation-profile__main-container {
 
@@ -97,7 +98,6 @@ body,
   }
   height: 20vh;
   // height: calc(100% - 30px - 24px); // header minus paddings
-  // background-color: #242424;
 }
 
 // #trackSwitch.esri-component {

@@ -2,7 +2,7 @@ import { property, subclass } from "esri/core/accessorSupport/decorators";
 import SceneView from "esri/views/SceneView";
 import Map = require("esri/Map");
 import { countries, hillshade, tracks2D, tracks3D, water } from "./layers";
-import { sections } from "./constants";
+import { Section } from "./constants";
 import Accessor = require("esri/core/Accessor");
 import Color = require("esri/Color");
 
@@ -16,7 +16,7 @@ const view = new SceneView({
   // viewingMode: "local",
   // clippingArea,
   map,
-  camera: sections[0].camera,
+  camera: Section.TOTAL.camera,
 
   // qualityProfile: "high",
 

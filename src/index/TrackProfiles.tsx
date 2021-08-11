@@ -1,14 +1,13 @@
 import Color from "esri/Color";
 import { property, subclass } from "esri/core/accessorSupport/decorators";
-import { createPlane } from "esri/geometry/Mesh";
 import ElevationProfile from "esri/widgets/ElevationProfile";
 import Widget from "esri/widgets/Widget";
-import { slowColor, slowColorFaded, fastColor, fastColorFaded } from "./constants";
+import { slowColor, slowColorFaded, fastColor, fastColorFaded, Section } from "./constants";
 import { scene } from "./Scene";
 
 import { tsx } from "esri/widgets/support/widget";
 import Tracks from "./Tracks";
-import * as watchUtils from "esri/core/watchUtils";
+import lerp from "./lerp";
 
 const view = scene.view;
 
@@ -40,6 +39,7 @@ function createProfile(color: Color, colorFaded: Color) {
     visibleElements
   });
   ep.viewModel.highlightEnabled = false;
+  window["ep"] = ep;
   return ep;
 }
 
@@ -62,10 +62,44 @@ export default class TrackProfiles extends Widget {
   showNew = true;
 
   @property()
-  section = 0;
+  private get activeEP() {
+    return this.showNew ? this.fastEP : this.slowEP;
+  }
+
+  @property()
+  private get inactiveEP() {
+    return this.showNew ? this.slowEP : this.fastEP;
+  }
+
+  @property()
+  get time() {
+    return this.showNew ? this.section.fastTime : this.section.slowTime;
+  }
+
+  @property()
+  get distance() {
+    const input = this.activeEP.viewModel.profiles.find((p) => p.type === "input");
+    return input.statistics ? input.statistics.maxDistance : 0;
+  }
+
+  @property()
+  section = Section.TOTAL;
 
   constructor(props: TrackProfilesProps) {
     super(props);
+  }
+
+  postInitialize() {
+    [this.fastEP, this.slowEP].forEach((ep) => {
+      const viewModel = ep.viewModel;
+      viewModel.watch("hoveredChartPosition", () => this.updateTimeDistance());
+
+      ep.watch("_chart", (chart) => {
+        if (chart) {
+          chart.amChart.cursor.behavior = "none";
+        }
+      });
+    });
   }
 
   render() {
@@ -75,8 +109,30 @@ export default class TrackProfiles extends Widget {
     this.fastEP.input = this.tracks.fastEPInput(this.section);
     this.fastEP.profiles.forEach((p) => (p.viewVisualizationEnabled = this.showNew));
 
-    const ep = this.showNew ? this.fastEP.render() : this.slowEP.render();
+    return <div>{this.activeEP.render()}</div>;
+  }
 
-    return <div>{ep}</div>;
+  private updateTimeDistance() {
+    const activePos = this.activeEP.viewModel.hoveredChartPosition;
+
+    if (activePos) {
+      const startCam = this.section.startCam;
+      const endCam = this.section.endCam;
+
+      if (startCam && endCam) {
+        const newCam = lerp(startCam, endCam, activePos);
+        scene.view.goTo(newCam, {
+          speedFactor: 2,
+          easing: "linear"
+        });
+      }
+
+      this.activeEP.viewModel.profiles.getItemAt(0).hoveredPoint;
+      const ratio = this.section.fastTime / this.section.slowTime;
+      const pos = Math.min(1, Math.max(0, this.showNew ? activePos * ratio : activePos / ratio));
+      this.inactiveEP.viewModel.hoveredChartPosition = pos;
+    } else {
+      this.inactiveEP.viewModel.hoveredChartPosition = activePos;
+    }
   }
 }

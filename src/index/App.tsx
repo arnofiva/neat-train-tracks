@@ -7,9 +7,9 @@ import { scene } from "./Scene";
 import Tracks from "./Tracks";
 import promiseUtils = require("esri/core/promiseUtils");
 import watchUtils = require("esri/core/watchUtils");
-import { slowColorFaded, fastColorFaded, sections } from "./constants";
+import { slowColorFaded, fastColorFaded, Section } from "./constants";
 import { tracks2D, tracks3D } from "./layers";
-import { views } from "esri/views/View";
+import TimeDistance from "./TimeDistance";
 
 export interface AppProps extends __esri.WidgetProperties {
   tracks: Tracks;
@@ -24,6 +24,9 @@ export default class App extends Widget {
   trackProfiles: TrackProfiles;
 
   @property()
+  timeDistance: TimeDistance;
+
+  @property()
   scene = scene;
 
   @property()
@@ -36,6 +39,10 @@ export default class App extends Widget {
   postInitialize() {
     this.trackProfiles = new TrackProfiles({
       tracks: this.tracks
+    });
+
+    this.timeDistance = new TimeDistance({
+      profile: this.trackProfiles
     });
 
     window.addEventListener("resize", (e) => {
@@ -58,12 +65,14 @@ export default class App extends Widget {
   public render() {
     const profiles = this.trackProfiles.render();
 
+    const timeDistance = this.timeDistance.render();
+
     return (
       <div>
         <div class="wrapper">
           <div class="grid-container">
             <div class="column-24 tablet-column-9 phone-column-6">
-              <h1>Zurich - Milano by Train</h1>
+              <h1>Zurich - Milan by Train</h1>
 
               <div class="column-6 tablet-column-3 phone-column-2">
                 <div id="leftPadding">
@@ -71,20 +80,14 @@ export default class App extends Widget {
                 </div>
               </div>
 
-              <div class="column-18 tablet-column-6 phone-pre-2 phone-column-2">
-                <span class="placeholder phone-show">Time & Distance</span>
+              <div class="column-18 tablet-column-6 phone-pre-2 phone-column-2 text-right">
+                {this.layout === "phone" ? timeDistance : <div></div>}
               </div>
             </div>
 
-            <div class="column-24 tablet-column-3 phone-column-6">
-              <span class="placeholder tablet-only" style="height: 50px;">
-                Time & Distance (tablet)
-              </span>
-            </div>
+            <div class="column-24 tablet-column-3 phone-column-6 text-right">{this.layout === "tablet" ? timeDistance : <div></div>}</div>
 
-            <div class="column-6 tablet-column-1 phone-column-1">
-              <span class="placeholder tablet-hide">Time & Distance</span>
-            </div>
+            <div class="column-6 tablet-column-1 phone-column-1">{this.layout === "desktop" ? timeDistance : <div></div>}</div>
           </div>
         </div>
 
@@ -153,11 +156,12 @@ export default class App extends Widget {
     await this.updateProfiles();
   }
 
-  async selectSection(section: number) {
-    if (0 <= section && section <= 3) {
+  async selectSection(sectionIndex: number) {
+    if (0 <= sectionIndex && sectionIndex <= 3) {
+      let section = Section.fromIndex(sectionIndex);
       this.trackProfiles.section = section;
       await this.updateProfiles();
-      this.scene.view.goTo(sections[section].camera);
+      this.scene.view.goTo(section.camera);
     }
   }
 

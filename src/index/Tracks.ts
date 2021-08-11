@@ -3,7 +3,7 @@ import { property, subclass } from "esri/core/accessorSupport/decorators";
 import { Polyline } from "esri/geometry";
 import Graphic from "esri/Graphic";
 import { LineSymbol3D, LineSymbol3DLayer } from "esri/symbols";
-import { fastColorFaded, slowColorFaded } from "./constants";
+import { fastColorFaded, Section, slowColorFaded } from "./constants";
 import { tracksLayer } from "./layers";
 
 import simplify = require("simplify");
@@ -125,34 +125,34 @@ export default class Tracks extends Accessor {
     });
   }
 
-  fastEPInput(section: number) {
+  fastEPInput(section: Section) {
     switch (section) {
-      case 1:
+      case Section.ZIMMERBERG:
         return this.tracks[1];
-      case 2:
+      case Section.GOTTHARD:
         return this.tracks[4];
-      case 3:
+      case Section.CENERI:
         return this.tracks[7];
       default:
         return this.fastRoute;
     }
   }
 
-  slowEPInput(section: number) {
+  slowEPInput(section: Section) {
     switch (section) {
-      case 1:
+      case Section.ZIMMERBERG:
         return this.tracks[2];
-      case 2:
+      case Section.GOTTHARD:
         return this.tracks[5];
-      case 3:
+      case Section.CENERI:
         return this.tracks[8];
       default:
         return this.slowRoute;
     }
   }
 
-  fadedTracks(showNew: boolean, section: number) {
-    if (section === 0) {
+  fadedTracks(showNew: boolean, section: Section) {
+    if (section === Section.TOTAL) {
       return showNew ? this.oldTracks : this.neatTracks;
     } else {
       return [showNew ? this.slowEPInput(section) : this.fastEPInput(section)];
