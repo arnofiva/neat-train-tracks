@@ -9,6 +9,7 @@ import { tsx } from "esri/widgets/support/widget";
 import Tracks from "./Tracks";
 import lerp from "./lerp";
 import TrackSelector from "./TrackSelector";
+import SectionSelector from "./SectionSelector";
 
 const view = scene.view;
 
@@ -54,12 +55,20 @@ export default class TrackProfiles extends Widget {
   tracks: Tracks;
 
   @property()
-  selector = new TrackSelector();
+  trackSelector = new TrackSelector();
 
   @property({
-    aliasOf: "selector.showNew"
+    aliasOf: "trackSelector.showNew"
   })
   showNew: boolean;
+
+  @property()
+  sectionSelector = new SectionSelector();
+
+  @property({
+    aliasOf: "sectionSelector.section"
+  })
+  section: Section;
 
   @property()
   slowEP = createProfile(slowColor, slowColorFaded);
@@ -87,9 +96,6 @@ export default class TrackProfiles extends Widget {
     const input = this.activeEP.viewModel.profiles.find((p) => p.type === "input");
     return input.statistics ? input.statistics.maxDistance : 0;
   }
-
-  @property()
-  section = Section.TOTAL;
 
   constructor(props: TrackProfilesProps) {
     super(props);

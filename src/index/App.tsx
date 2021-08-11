@@ -49,7 +49,7 @@ export default class App extends Widget {
     });
 
     this.legend = new Legend({
-      selector: this.trackProfiles.selector
+      selector: this.trackProfiles.trackSelector
     });
 
     window.addEventListener("resize", (e) => {
@@ -58,15 +58,20 @@ export default class App extends Widget {
 
     document.addEventListener("keydown", async (e) => {
       if (e.key === " ") {
-        this.trackProfiles.selector.showNew = !this.trackProfiles.selector.showNew;
+        this.trackProfiles.trackSelector.showNew = !this.trackProfiles.trackSelector.showNew;
       } else {
         const num = Number.parseInt(e.key);
         await this.selectSection(num);
       }
     });
 
-    this.trackProfiles.selector.watch("showNew", () => {
+    this.trackProfiles.trackSelector.watch("showNew", () => {
       this.updateProfiles();
+    });
+
+    this.trackProfiles.sectionSelector.watch("section", async (section: Section) => {
+      await this.updateProfiles();
+      this.scene.view.goTo(section.camera);
     });
 
     this.evaluateLayout();
@@ -81,8 +86,9 @@ export default class App extends Widget {
     const profiles = this.trackProfiles.render();
 
     const timeDistance = this.timeDistance.render();
-    const selector = this.trackProfiles.selector.render();
+    const selector = this.trackProfiles.trackSelector.render();
     const legend = this.legend.render();
+    const sections = this.trackProfiles.sectionSelector.render();
 
     return (
       <div>
@@ -106,25 +112,19 @@ export default class App extends Widget {
 
         <div class="footer">
           <div class="grid-container">
-            <div class="column-6 tablet-column-6 phone-column-1">{this.layout === "desktop" ? legend : <div></div>}</div>
+            <div class="column-4 tablet-column-6 phone-column-1">{this.layout === "desktop" ? legend : <div></div>}</div>
 
-            <div class="column-18 tablet-column-6 phone-column-2">
-              <span class="placeholder tablet-hide">Sections</span>
-            </div>
+            <div class="pre-2 column-18 tablet-column-6 phone-column-2">{this.layout === "desktop" ? sections : <div></div>}</div>
 
             <div class="column-12 tablet-column-3 phone-column-3">{this.layout === "tablet" ? legend : <div></div>}</div>
 
-            <div class="column-12 tablet-column-9 phone-column-3">
-              <span class="placeholder tablet-only">Sections (Tablet)</span>
-            </div>
+            <div class="column-12 tablet-column-9 phone-column-3">{this.layout === "tablet" ? sections : <div></div>}</div>
 
             <div class="column-8 tablet-column-4 phone-column-2">
               <span class="placeholder phone-show">Play (Phone)</span>
             </div>
 
-            <div class="column-8 tablet-column-4 phone-column-2">
-              <span class="placeholder phone-show">Sections (Phone)</span>
-            </div>
+            <div class="column-8 tablet-column-4 phone-column-2">{this.layout === "phone" ? sections : <div></div>}</div>
 
             <div class="column-8 tablet-column-4 phone-column-2 text-right">{this.layout === "phone" ? legend : <div></div>}</div>
 
@@ -162,8 +162,6 @@ export default class App extends Widget {
     if (0 <= sectionIndex && sectionIndex <= 3) {
       let section = Section.fromIndex(sectionIndex);
       this.trackProfiles.section = section;
-      await this.updateProfiles();
-      this.scene.view.goTo(section.camera);
     }
   }
 

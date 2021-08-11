@@ -7,9 +7,9 @@ $font-path: '../../node_modules/calcite-web/dist/fonts';
 @import "node_modules/calcite-web/dist/sass/calcite-web-dark.scss";
 
 $slow-color: #ff7d00;
-$slow-colorFaded: #9b5c20;
+$slow-color-faded: #9b5c20;
 
-$fast-colorFaded: #007f00;
+$fast-color-faded: #007f00;
 $fast-color: #00ff00;
 
 
@@ -87,25 +87,28 @@ body,
   }
 
   .elevation {
-    border-bottom: 1px solid white;
+    border-bottom: 2px solid $fast-color-faded;
+    &.slow {
+      border-bottom-color: $slow-color-faded;
+    }
   }
 
   .track {
-    border-bottom: 2px solid white;
+    border-bottom: 2px solid $fast-color;
+    &.slow {
+      border-bottom-color: $slow-color;
+    }
   }
 
-  .fast {
-    border-bottom-color: $fast-color;
-  }
-
-  .slow {
-    border-bottom-color: $slow-color;
-  }
 }
 
 
 
 /* REMOVE!  */
+.sections {
+  padding-top: 2em;
+  padding-bottom: 2em;
+}
 .grid-container .placeholder {
   width: 100%;
   display: block;
