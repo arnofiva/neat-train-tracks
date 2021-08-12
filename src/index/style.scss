@@ -126,17 +126,28 @@ $track-section-dot-size: 12px;
   margin: 1rem;
   display: inline-flex;
 
+  // &::after {
+  //   content: '';
+  //   display: block;
+  //   position: absolute;
+  //   z-index: -1;
+  //   bottom: 0px;
+  //   background-color: $fast-color;
+  //   width: 100%;
+  //   height: $track-section-line-width;
+  // }
+
   .track-section {
 
-    width: $track-section-dot-size;
-    height: $track-section-dot-size;
-    background-color: white;
+    // width: $track-section-dot-size;
+    // height: $track-section-dot-size;
+    // background-color: white;
     position: relative;
-    border-radius: 50%;
-    display: block;
-    -moz-appearance: none;
-    -webkit-appearance: none;
-    appearance: none;
+    // border-radius: 50%;
+    // display: block;
+    // -moz-appearance: none;
+    // -webkit-appearance: none;
+    // appearance: none;
     cursor: pointer;
 
     margin-left: $track-section-line-length;
@@ -147,8 +158,10 @@ $track-section-dot-size: 12px;
       display: block;
       position: absolute;
       z-index: -1;
-      top: 50%;
-      transform: translateY(-50%);
+
+      // top: 50%;
+      // transform: translateY(-50%);
+      bottom: 0px;
       background-color: white;
       width: $track-section-line-length;
       height: $track-section-line-width;
@@ -163,28 +176,39 @@ $track-section-dot-size: 12px;
       right: -$track-section-line-length;
     }
 
-    .track-pin::after {
-      display: block;
-      content: '';
-      position: absolute;
-      z-index: -1;
-      bottom: $track-section-dot-size / 2;
-      left: $track-section-dot-size / 2 - $track-section-line-width / 2;
+    .track-pin{
 
+      position: absolute;
+      bottom: 2 * $track-section-line-width;
+      left: 50%;
+      transform: translateX(-50%);
+      width: $track-section-line-length;
+      height: $track-section-line-width;
       background-color: white;
-      width: $track-section-line-width;
-      height: $track-section-line-height;
-      max-width: 50px;
+
+      &::after {
+        display: block;
+        content: '';
+        position: absolute;
+        z-index: -1;
+        bottom: $track-section-line-width * 2;
+        left: $track-section-line-length / 2;
+
+        background-color: white;
+        width: $track-section-line-width / 2;
+        height: $track-section-line-height;
+        max-width: 50px;
+      }
     }
 
     .track-label {
-      top: -(2 * $track-section-line-height + 5px);
-      left: 0;
+      top: -(2 * $track-section-line-height + 20px);
+      left: -$track-section-line-length / 2;
       transform: rotateZ(
         -45deg
       );
       width: 70px;
-      text-indent: -10px;
+      // text-indent: -10px;
       position: absolute;
 
       font-size: 0.875em;

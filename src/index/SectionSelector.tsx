@@ -9,28 +9,17 @@ export default class SectionSelector extends Widget {
   section = Section.TOTAL;
 
   render() {
-    return (
-      <div class="track-sections interactive">
-        <div class="track-section">
-          <span class="track-pin"></span>
-          <span class="track-label" onclick={() => this.selectSection(Section.ZIMMERBERG)}>
-            Zimmerberg (2002)
-          </span>
-        </div>
-        <div class="track-section">
-          <span class="track-pin"></span>
-          <span class="track-label" onclick={() => this.selectSection(Section.GOTTHARD)}>
-            Gotthard (2016)
-          </span>
-        </div>
-        <div class="track-section">
-          <span class="track-pin"></span>
-          <span class="track-label" onclick={() => this.selectSection(Section.CENERI)}>
-            Ceneri (2020)
-          </span>
-        </div>
+
+    const sections = [Section.ZIMMERBERG, Section.GOTTHARD, Section.CENERI].map((section) => (
+      <div class={`track-section ${section.label.toLowerCase()}`}>
+        <span class="track-pin"></span>
+        <span class="track-label" onclick={() => this.selectSection(section)}>
+          {section.label} ({section.year})
+        </span>
       </div>
-    );
+    ));
+
+    return <div class="track-sections interactive">{sections}</div>;
   }
 
   private selectSection(section: Section) {

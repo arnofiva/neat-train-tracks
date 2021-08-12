@@ -12,6 +12,8 @@ export const fastColor = new Color("#00ff00");
 
 export class Section {
   static readonly TOTAL = new Section(
+    "Total",
+    2020,
     4 * 60 + 22, // 4h 03min
     3 * 60 + 17, // 2h 58min
     new Camera({
@@ -26,6 +28,8 @@ export class Section {
   );
 
   static readonly ZIMMERBERG = new Section(
+    "Zimmerberg",
+    2002,
     10, // 10min
     5, // 3h 17min
     new Camera({
@@ -58,6 +62,8 @@ export class Section {
   );
 
   static readonly GOTTHARD = new Section(
+    "Gotthard",
+    2016,
     50, // 50min
     20, // 20min
     new Camera({
@@ -108,6 +114,8 @@ export class Section {
   );
 
   static readonly CENERI = new Section(
+    "Ceneri",
+    2020,
     20, // 4h 22min
     10, // 3h 17min
     new Camera({
@@ -153,6 +161,8 @@ export class Section {
   }
 
   private constructor(
+    public label: string,
+    public year: number,
     public slowTime: number,
     public fastTime: number,
     public camera: Camera,
