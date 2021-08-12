@@ -10,21 +10,22 @@ export default class SectionSelector extends Widget {
 
   render() {
     return (
-      <div class="sections interactive">
-        {/* <span class="placeholder">Sections</span> */}
-
-        <div class="section">
-          <span class="label" onclick={() => this.selectSection(Section.ZIMMERBERG)}>
+      <div class="track-sections interactive">
+        <div class="track-section">
+          <span class="track-pin"></span>
+          <span class="track-label" onclick={() => this.selectSection(Section.ZIMMERBERG)}>
             Zimmerberg (2002)
           </span>
         </div>
-        <div class="section">
-          <span class="label" onclick={() => this.selectSection(Section.GOTTHARD)}>
+        <div class="track-section">
+          <span class="track-pin"></span>
+          <span class="track-label" onclick={() => this.selectSection(Section.GOTTHARD)}>
             Gotthard (2016)
           </span>
         </div>
-        <div class="section">
-          <span class="label" onclick={() => this.selectSection(Section.CENERI)}>
+        <div class="track-section">
+          <span class="track-pin"></span>
+          <span class="track-label" onclick={() => this.selectSection(Section.CENERI)}>
             Ceneri (2020)
           </span>
         </div>

@@ -70,8 +70,8 @@ export const pois = new FeatureLayer({
 
 export const countries = new FeatureLayer({
   portalItem: {
-    // id: "ac80670eb213440ea5899bbf92a04998" // Detailed
-    id: "2b93b06dc0dc4e809d3c8db5cb96ba69" // Generalized
+    id: "ac80670eb213440ea5899bbf92a04998" // Detailed
+    // id: "2b93b06dc0dc4e809d3c8db5cb96ba69" // Generalized
   },
   popupEnabled: false,
   definitionExpression: "Country in ('Switzerland')",
@@ -81,7 +81,7 @@ export const countries = new FeatureLayer({
         new FillSymbol3DLayer({
           outline: {
             color: [180, 180, 180],
-            size: 2.5
+            size: 1.5
           }
         })
       ]
