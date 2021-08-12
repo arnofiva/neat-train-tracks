@@ -43,21 +43,21 @@ export class Section {
     }),
     new Camera({
       position: {
-        longitude: 8.5155129,
-        latitude: 47.40915386,
-        z: 2291.69999
+        longitude: 8.40855124,
+        latitude: 47.43665308,
+        z: 5978.65164
       },
-      heading: 181.61,
-      tilt: 63.98
+      heading: 123.80,
+      tilt: 66.61
     }),
     new Camera({
       position: {
-        longitude: 8.50612225,
-        latitude: 47.29491531,
-        z: 2139.48809
+        longitude: 8.45039066,
+        latitude: 47.31316890,
+        z: 3667.26979
       },
-      heading: 83.64,
-      tilt: 66.9
+      heading: 99.26,
+      tilt: 69.22
     })
   );
 
@@ -77,21 +77,21 @@ export class Section {
     }),
     new Camera({
       position: {
-        longitude: 8.62930101,
-        latitude: 47.00796764,
-        z: 10259.1925
+        longitude: 8.22846686,
+        latitude: 46.90588032,
+        z: 17213.84224
       },
-      heading: 188.82,
-      tilt: 68.46
+      heading: 101.77,
+      tilt: 62.48
     }),
     new Camera({
       position: {
-        longitude: 8.75380363,
-        latitude: 46.4046695,
-        z: 8386.95846
+        longitude: 8.95254757,
+        latitude: 45.93042599,
+        z: 17401.64004
       },
-      heading: 141.72,
-      tilt: 69.49
+      heading: 0.07,
+      tilt: 62.89
     })
     // new Camera({
     //   position: {
@@ -129,21 +129,21 @@ export class Section {
     }),
     new Camera({
       position: {
-        longitude: 8.93383496,
-        latitude: 46.26408764,
-        z: 5468.9504
+        longitude: 8.80295359,
+        latitude: 46.28174036,
+        z: 11077.36013
       },
-      heading: 156.85,
-      tilt: 68.33
+      heading: 116.74,
+      tilt: 62.59
     }),
     new Camera({
       position: {
-        longitude: 8.84061376,
-        latitude: 46.10261438,
-        z: 7029.88396
+        longitude: 8.69576561,
+        latitude: 45.93980066,
+        z: 11241.25036
       },
-      heading: 139.31,
-      tilt: 57.49
+      heading: 66.06,
+      tilt: 61.94
     })
   );
 

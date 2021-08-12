@@ -70,11 +70,19 @@ body,
 }
 
 .track-selector {
+
   a {
     color: white;
     cursor: pointer;
 
     text-decoration: none !important;
+  }
+
+  .active {
+    &::after {
+      @include icon-font-styles();
+      content: "\f111";
+    }
   }
 
   padding-bottom: 50px;

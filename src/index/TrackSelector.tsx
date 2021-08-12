@@ -11,12 +11,14 @@ export default class TrackSelector extends Widget {
     return (
       <div class="track-selector interactive">
         <div>
-          <a onclick={() => (this.showNew = true)}>New Track </a>
-          <span class={this.showNew ? "icon-ui-check-mark" : ""}></span>
+          <a onclick={() => (this.showNew = true)} class={this.showNew ? "active" : ""}>
+            New Track{" "}
+          </a>
         </div>
         <div>
-          <a onclick={() => (this.showNew = false)}>Old Track </a>
-          <span class={this.showNew ? "" : "icon-ui-check-mark"}></span>
+          <a onclick={() => (this.showNew = false)} class={this.showNew ? "" : "active"}>
+            Old Track{" "}
+          </a>
         </div>
       </div>
     );
