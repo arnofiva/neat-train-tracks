@@ -76,10 +76,6 @@ export default class App extends Widget {
 
     this.evaluateLayout();
     this.updateProfiles();
-
-    if (this.layout === "phone") {
-      this.selectSection(2);
-    }
   }
 
   public render() {
