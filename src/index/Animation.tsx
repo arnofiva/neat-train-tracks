@@ -14,6 +14,9 @@ export default class Animation extends Widget {
   @property()
   profiles: TrackProfiles;
 
+  @property()
+  private cameraTracking = true;
+
   constructor(props: AnimationProps) {
     super(props);
   }
@@ -22,6 +25,16 @@ export default class Animation extends Widget {
     [this.profiles.fastEP, this.profiles.slowEP].forEach((ep) => {
       const viewModel = ep.viewModel;
       viewModel.watch("hoveredChartPosition", () => this.updateTimeDistance());
+    });
+
+    scene.view.watch("interacting", () => {
+      if (scene.view.interacting) {
+        this.cameraTracking = false;
+      }
+    });
+
+    this.profiles.watch("section", () => {
+      this.cameraTracking = true;
     });
   }
 
@@ -44,7 +57,7 @@ export default class Animation extends Widget {
       const startCam = section.startCam;
       const endCam = section.endCam;
 
-      if (startCam && endCam) {
+      if (this.cameraTracking && startCam && endCam) {
         const newCam = lerp(startCam, endCam, activePos);
         scene.view.goTo(newCam, {
           speedFactor: 2,
