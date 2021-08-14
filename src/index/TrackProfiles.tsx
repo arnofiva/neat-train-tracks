@@ -7,7 +7,6 @@ import { scene } from "./Scene";
 
 import { tsx } from "esri/widgets/support/widget";
 import Tracks from "./Tracks";
-import lerp from "./lerp";
 import TrackSelector from "./TrackSelector";
 import SectionSelector from "./SectionSelector";
 
@@ -77,12 +76,12 @@ export default class TrackProfiles extends Widget {
   fastEP = createProfile(fastColor, fastColorFaded);
 
   @property()
-  private get activeEP() {
+  get activeEP() {
     return this.showNew ? this.fastEP : this.slowEP;
   }
 
   @property()
-  private get inactiveEP() {
+  get inactiveEP() {
     return this.showNew ? this.slowEP : this.fastEP;
   }
 
@@ -103,9 +102,6 @@ export default class TrackProfiles extends Widget {
 
   postInitialize() {
     [this.fastEP, this.slowEP].forEach((ep) => {
-      const viewModel = ep.viewModel;
-      viewModel.watch("hoveredChartPosition", () => this.updateTimeDistance());
-
       ep.watch("_chart", (chart) => {
         if (chart) {
           chart.amChart.cursor.behavior = "none";
@@ -123,29 +119,5 @@ export default class TrackProfiles extends Widget {
     this.fastEP.profiles.forEach((p) => (p.viewVisualizationEnabled = showNew));
 
     return <div>{this.activeEP.render()}</div>;
-  }
-
-  private updateTimeDistance() {
-    const activePos = this.activeEP.viewModel.hoveredChartPosition;
-
-    if (activePos) {
-      const startCam = this.section.startCam;
-      const endCam = this.section.endCam;
-
-      if (startCam && endCam) {
-        const newCam = lerp(startCam, endCam, activePos);
-        scene.view.goTo(newCam, {
-          speedFactor: 2,
-          easing: "linear"
-        });
-      }
-
-      this.activeEP.viewModel.profiles.getItemAt(0).hoveredPoint;
-      const ratio = this.section.fastTime / this.section.slowTime;
-      const pos = Math.min(1, Math.max(0, this.showNew ? activePos * ratio : activePos / ratio));
-      this.inactiveEP.viewModel.hoveredChartPosition = pos;
-    } else {
-      this.inactiveEP.viewModel.hoveredChartPosition = activePos;
-    }
   }
 }

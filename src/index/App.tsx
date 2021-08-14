@@ -10,6 +10,7 @@ import { slowColorFaded, fastColorFaded, Section } from "./constants";
 import { tracks2D, tracks3D } from "./layers";
 import TimeDistance from "./TimeDistance";
 import Legend from "./Legend";
+import Animation from "./Animation";
 
 export interface AppProps extends __esri.WidgetProperties {
   tracks: Tracks;
@@ -25,6 +26,9 @@ export default class App extends Widget {
 
   @property()
   timeDistance: TimeDistance;
+
+  @property()
+  animation: Animation;
 
   @property()
   legend: Legend;
@@ -50,6 +54,10 @@ export default class App extends Widget {
 
     this.legend = new Legend({
       selector: this.trackProfiles.trackSelector
+    });
+
+    this.animation = new Animation({
+      profiles: this.trackProfiles
     });
 
     window.addEventListener("resize", (e) => {
@@ -85,6 +93,7 @@ export default class App extends Widget {
     const selector = this.trackProfiles.trackSelector.render();
     const legend = this.legend.render();
     const sections = this.trackProfiles.sectionSelector.render();
+    const animation = this.animation.render();
 
     return (
       <div>
@@ -114,9 +123,7 @@ export default class App extends Widget {
 
             <div class="column-12 tablet-column-9 phone-column-3">{this.layout === "tablet" ? sections : <div></div>}</div>
 
-            <div class="column-8 tablet-column-4 phone-column-2">
-              <span class="placeholder phone-show">Play (Phone)</span>
-            </div>
+            <div class="column-8 tablet-column-4 phone-column-2">{this.layout === "phone" ? animation : <div></div>}</div>
 
             <div class="column-8 tablet-column-4 phone-column-2">{this.layout === "phone" ? sections : <div></div>}</div>
 
@@ -124,9 +131,7 @@ export default class App extends Widget {
 
             {/* Footer 2nd part */}
 
-            <div class="column-6 tablet-column-3 phone-column-6">
-              <span class="placeholder phone-hide">Play</span>
-            </div>
+            <div class="column-6 tablet-column-3 phone-column-6">{this.layout !== "phone" ? animation : <div></div>}</div>
 
             <div class="column-18 tablet-column-9 phone-column-6">
               <div class="interactive">{profiles}</div>
