@@ -72,9 +72,9 @@ body,
 .track-selector {
 
   a {
+    white-space: nowrap;
     color: white;
     cursor: pointer;
-
     text-decoration: none !important;
   }
 
@@ -90,11 +90,12 @@ body,
 
 .time-distance {
   h4 {
-    font-size: 1em;
-    margin: 0.75rem 0 0 0;
+    font-size: 0.7em;
+    margin: 0.5rem 0 0 0;
   }
 
   span {
+    white-space: nowrap;
     font-size: 1.5em;
   }
 }

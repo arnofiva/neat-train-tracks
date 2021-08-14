@@ -93,16 +93,14 @@ export default class App extends Widget {
             <div class="column-24 tablet-column-9 phone-column-6">
               <h1>Zurich - Milan by Train</h1>
 
-              <div class="column-6 tablet-column-3 phone-column-2">{selector}</div>
+              <div class="column-6 tablet-column-3 phone-column-3">{selector}</div>
 
-              <div class="column-18 tablet-column-6 phone-pre-2 phone-column-2 text-right">
-                {this.layout === "phone" ? timeDistance : <div></div>}
+              <div class="pre-12 column-6 tablet-column-6 phone-column-3 text-right">
+                {this.layout !== "tablet" ? timeDistance : <div></div>}
               </div>
             </div>
 
             <div class="column-24 tablet-column-3 phone-column-6 text-right">{this.layout === "tablet" ? timeDistance : <div></div>}</div>
-
-            <div class="column-6 tablet-column-1 phone-column-1">{this.layout === "desktop" ? timeDistance : <div></div>}</div>
           </div>
         </div>
 
