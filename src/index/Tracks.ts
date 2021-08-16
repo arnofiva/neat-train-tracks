@@ -150,7 +150,7 @@ export default class Tracks extends Accessor {
   }
 
   fadedTracks(showNew: boolean, section: Section) {
-    if (section === Section.TOTAL) {
+    if (section === Section.ALL) {
       return showNew ? this.oldTracks : this.neatTracks;
     } else {
       return [showNew ? this.slowEPInput(section) : this.fastEPInput(section)];

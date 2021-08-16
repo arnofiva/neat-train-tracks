@@ -18,7 +18,7 @@ const view = new SceneView({
   // viewingMode: "local",
   // clippingArea,
   map,
-  camera: Section.TOTAL.camera,
+  camera: Section.ALL.camera,
 
   // qualityProfile: "high",
 

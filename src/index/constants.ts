@@ -14,8 +14,8 @@ export const fastColor = new Color("#11dd00");
 // Source: https://www.uvek.admin.ch/uvek/de/home/verkehr/gotthard-basistunnel.html
 
 export class Section {
-  static readonly TOTAL = new Section(
-    "Total",
+  static readonly ALL = new Section(
+    "All",
     2020,
     4 * 60 + 22, // 4h 03min
     3 * 60 + 17, // 2h 58min
@@ -177,7 +177,7 @@ export class Section {
       case 3:
         return this.CENERI;
       default:
-        return this.TOTAL;
+        return this.ALL;
     }
   }
 

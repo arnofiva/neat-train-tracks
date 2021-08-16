@@ -6,25 +6,24 @@ import { Section } from "./constants";
 @subclass("app.sectionselector")
 export default class SectionSelector extends Widget {
   @property()
-  section = Section.TOTAL;
+  section = Section.ALL;
 
   render() {
-
-    const sections = [Section.ZIMMERBERG, Section.GOTTHARD, Section.CENERI].map((section) => (
-      <div class={`track-section ${section.label.toLowerCase()}`}>
-        <span class="track-pin"></span>
-        <span class="track-label" onclick={() => this.selectSection(section)}>
+    const sections = [Section.ALL, Section.ZIMMERBERG, Section.GOTTHARD, Section.CENERI].map((section) => {
+      const btnClass = `btn btn-small ${this.section === section ? "active" : ""} ${section.label.toLowerCase()}`;
+      return (
+        <button onclick={() => this.selectSection(section)} class={btnClass}>
           {section.label} ({section.year})
-        </span>
-      </div>
-    ));
+        </button>
+      );
+    });
 
     return <div class="track-sections interactive">{sections}</div>;
   }
 
   private selectSection(section: Section) {
     if (this.section === section) {
-      this.section = Section.TOTAL;
+      this.section = Section.ALL;
     } else {
       this.section = section;
     }
