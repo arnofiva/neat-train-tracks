@@ -81,16 +81,10 @@ export default class Tracks extends Accessor {
   tracks: Graphic[];
 
   @property()
-  slowTracks: Graphic[];
-
-  @property()
   oldTracks: Graphic[];
 
   @property()
   slowRoute: Graphic;
-
-  @property()
-  fastTracks: Graphic[];
 
   @property()
   neatTracks: Graphic[];
@@ -106,18 +100,17 @@ export default class Tracks extends Accessor {
     const tracks = await loadTracks();
 
     const slowTracks = tracks.filter((t) => t.getAttribute("Membership") !== "NEAT");
+    const fastTracks = tracks.filter((t) => t.getAttribute("Membership") !== "Old");
+
     const oldTracks = tracks.filter((t) => t.getAttribute("Membership") === "Old");
     const slowRoute = slowTracks.reduce((acc, t) => (acc ? mergeTracks(acc, t, true) : t));
-    const fastTracks = tracks.filter((t) => t.getAttribute("Membership") !== "Old");
     const neatTracks = tracks.filter((t) => t.getAttribute("Membership") === "NEAT");
     const fastRoute = fastTracks.reduce((acc, t) => (acc ? mergeTracks(acc, t, true) : t));
 
     return new Tracks({
       tracks,
-      slowTracks,
       oldTracks,
       slowRoute,
-      fastTracks,
       neatTracks,
       fastRoute
     });
