@@ -5,6 +5,8 @@ import TrackProfiles from "./TrackProfiles";
 import { scene } from "./Scene";
 import lerp from "./lerp";
 
+import anime from "animejs";
+
 export interface AnimationProps extends __esri.WidgetProperties {
   profiles: TrackProfiles;
 }
@@ -16,6 +18,9 @@ export default class Animation extends Widget {
 
   @property()
   private cameraTracking = true;
+
+  @property()
+  private currentAnimationStart = 0;
 
   constructor(props: AnimationProps) {
     super(props);
@@ -29,6 +34,7 @@ export default class Animation extends Widget {
 
     scene.view.watch("interacting", () => {
       if (scene.view.interacting) {
+        this.currentAnimationStart = 0;
         this.cameraTracking = false;
       }
     });
@@ -38,11 +44,47 @@ export default class Animation extends Widget {
     });
   }
 
+  stop() {
+    this.currentAnimationStart = 0;
+  }
+
+  play() {
+    // Stop any current animation
+
+    const duration = 5000;
+    let start: number;
+
+    const step = (timestamp: number) => {
+      if (start === undefined) {
+        start = timestamp;
+        this.currentAnimationStart = start;
+      } else if (this.currentAnimationStart === 0) {
+        return;
+      }
+
+      const t = Math.min(1, Math.max(0, (timestamp - start) / duration));
+
+      this.profiles.activeEP.viewModel.hoveredChartPosition = t;
+
+      if (t < 1) {
+        requestAnimationFrame(step);
+      } else {
+        this.currentAnimationStart = 0;
+      }
+    };
+
+    this.cameraTracking = true;
+    requestAnimationFrame(step);
+  }
+
   render() {
     return (
-      <div class="animation">
-        <span class="icon-ui-play"></span>
-        <span class="icon-ui-pause"></span>
+      <div class="animation interactive">
+        {this.currentAnimationStart ? (
+          <span class="icon-ui-pause" onclick={() => this.stop()}></span>
+        ) : (
+          <span class="icon-ui-play" onclick={() => this.play()}></span>
+        )}
       </div>
     );
   }
@@ -65,7 +107,6 @@ export default class Animation extends Widget {
         });
       }
 
-      activeEP.viewModel.profiles.getItemAt(0).hoveredPoint;
       const ratio = section.fastTime / section.slowTime;
       const pos = Math.min(1, Math.max(0, this.profiles.showNew ? activePos * ratio : activePos / ratio));
       inactiveEP.viewModel.hoveredChartPosition = pos;

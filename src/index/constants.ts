@@ -24,6 +24,24 @@ export class Section {
       },
       heading: 48.74,
       tilt: 51.89
+    }),
+    new Camera({
+      position: {
+        longitude: 7.18997109,
+        latitude: 45.92987682,
+        z: 201836.98005
+      },
+      heading: 30.13,
+      tilt: 37.54
+    }),
+    new Camera({
+      position: {
+        longitude: 7.20718085,
+        latitude: 46.02959863,
+        z: 209488.10173
+      },
+      heading: 89.05,
+      tilt: 34.49
     })
   );
 
@@ -47,13 +65,13 @@ export class Section {
         latitude: 47.43665308,
         z: 5978.65164
       },
-      heading: 123.80,
+      heading: 123.8,
       tilt: 66.61
     }),
     new Camera({
       position: {
         longitude: 8.45039066,
-        latitude: 47.31316890,
+        latitude: 47.3131689,
         z: 3667.26979
       },
       heading: 99.26,
