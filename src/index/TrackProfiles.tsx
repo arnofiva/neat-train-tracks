@@ -2,7 +2,7 @@ import Color from "esri/Color";
 import { property, subclass } from "esri/core/accessorSupport/decorators";
 import ElevationProfile from "esri/widgets/ElevationProfile";
 import Widget from "esri/widgets/Widget";
-import { slowColor, slowColorFaded, fastColor, fastColorFaded, Section } from "./constants";
+import { slowColor, slowColorFaded, fastColor, fastColorFaded, Section, elevationColor } from "./constants";
 import { scene } from "./Scene";
 
 import { tsx } from "esri/widgets/support/widget";
@@ -22,7 +22,7 @@ const visibleElements = {
   uniformChartScalingToggle: false
 };
 
-function createProfile(color: Color, colorFaded: Color) {
+function createProfile(color: Color) {
   const ep = new ElevationProfile({
     view,
     profiles: [
@@ -33,8 +33,8 @@ function createProfile(color: Color, colorFaded: Color) {
       },
       {
         type: "ground",
-        viewVisualizationEnabled: true,
-        color: colorFaded
+        viewVisualizationEnabled: false,
+        color: elevationColor
       }
     ],
     visibleElements
@@ -70,10 +70,10 @@ export default class TrackProfiles extends Widget {
   section: Section;
 
   @property()
-  slowEP = createProfile(slowColor, slowColorFaded);
+  slowEP = createProfile(slowColor);
 
   @property()
-  fastEP = createProfile(fastColor, fastColorFaded);
+  fastEP = createProfile(fastColor);
 
   @property()
   get activeEP() {
@@ -108,16 +108,25 @@ export default class TrackProfiles extends Widget {
         }
       });
     });
+
+    this.watch(["section", "showNew"], () => this.updateProfiles());
+    this.updateProfiles();
   }
 
   render() {
+    return <div>{this.activeEP.render()}</div>;
+  }
+
+  private updateProfiles() {
     const showNew = this.showNew;
-    this.slowEP.profiles.forEach((p) => (p.viewVisualizationEnabled = !showNew));
+    this.slowEP.profiles.forEach((p) => {
+      p.viewVisualizationEnabled = !showNew;
+    });
     this.slowEP.input = this.tracks.slowEPInput(this.section);
 
     this.fastEP.input = this.tracks.fastEPInput(this.section);
-    this.fastEP.profiles.forEach((p) => (p.viewVisualizationEnabled = showNew));
-
-    return <div>{this.activeEP.render()}</div>;
+    this.fastEP.profiles.forEach((p) => {
+      p.viewVisualizationEnabled = showNew;
+    });
   }
 }

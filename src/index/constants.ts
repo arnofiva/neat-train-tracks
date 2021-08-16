@@ -1,12 +1,15 @@
 import Camera from "esri/Camera";
 import Color from "esri/Color";
 
+export const elevationColor = new Color("#FFFFFF");
+elevationColor.a = 0.5;
+
 export const slowColor = new Color("#ff7d00");
 export const slowColorFaded = new Color("#9b5c20");
-
-export const fadedColor = new Color("#808080");
+// export const fadedColor = new Color("#808080");
 export const fastColorFaded = new Color("#007f00");
-export const fastColor = new Color("#00ff00");
+export const fastColor = new Color("#11dd00");
+//export const fastColor = new Color("white");
 
 // Source: https://www.uvek.admin.ch/uvek/de/home/verkehr/gotthard-basistunnel.html
 
@@ -95,21 +98,21 @@ export class Section {
     }),
     new Camera({
       position: {
-        longitude: 8.22846686,
-        latitude: 46.90588032,
-        z: 17213.84224
+        longitude: 8.09621571,
+        latitude: 46.95660722,
+        z: 45765.19612
       },
-      heading: 101.77,
-      tilt: 62.48
+      heading: 106.83,
+      tilt: 38.07
     }),
     new Camera({
       position: {
-        longitude: 8.95254757,
-        latitude: 45.93042599,
-        z: 17401.64004
+        longitude: 8.43732082,
+        latitude: 46.48417582,
+        z: 38082.73353
       },
-      heading: 0.07,
-      tilt: 62.89
+      heading: 104.93,
+      tilt: 42.46
     })
     // new Camera({
     //   position: {
@@ -147,21 +150,21 @@ export class Section {
     }),
     new Camera({
       position: {
-        longitude: 8.80295359,
-        latitude: 46.28174036,
-        z: 11077.36013
+        longitude: 9.02926596,
+        latitude: 46.29802574,
+        z: 5882.2629
       },
-      heading: 116.74,
-      tilt: 62.59
+      heading: 189.93,
+      tilt: 66.43
     }),
     new Camera({
       position: {
-        longitude: 8.69576561,
-        latitude: 45.93980066,
-        z: 11241.25036
+        longitude: 8.85111269,
+        latitude: 46.13497995,
+        z: 6882.37275
       },
-      heading: 66.06,
-      tilt: 61.94
+      heading: 146.89,
+      tilt: 60.19
     })
   );
 

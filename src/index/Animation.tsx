@@ -6,6 +6,7 @@ import { scene } from "./Scene";
 import lerp from "./lerp";
 
 import anime from "animejs";
+import { views } from "esri/views/View";
 
 export interface AnimationProps extends __esri.WidgetProperties {
   profiles: TrackProfiles;
@@ -20,7 +21,7 @@ export default class Animation extends Widget {
   private cameraTracking = true;
 
   @property()
-  private currentAnimationStart = 0;
+  private running = false;
 
   constructor(props: AnimationProps) {
     super(props);
@@ -34,32 +35,43 @@ export default class Animation extends Widget {
 
     scene.view.watch("interacting", () => {
       if (scene.view.interacting) {
-        this.currentAnimationStart = 0;
+        this.stop();
         this.cameraTracking = false;
       }
     });
 
     this.profiles.watch("section", () => {
       this.cameraTracking = true;
+      this.profiles.activeEP.viewModel.hoveredChartPosition = undefined as any;
     });
   }
 
   stop() {
-    this.currentAnimationStart = 0;
+    this.running = false;
   }
 
-  play() {
+  async play() {
     // Stop any current animation
 
-    const duration = 5000;
+    this.running = true;
+    const startCam = this.profiles.section.startCam;
+    if (startCam) {
+      try {
+        await scene.view.goTo(startCam);
+      } catch {
+        this.running = false;
+      }
+    }
+
+    const duration = 10000;
     let start: number;
 
     const step = (timestamp: number) => {
+      if (!this.running) {
+        return;
+      }
       if (start === undefined) {
         start = timestamp;
-        this.currentAnimationStart = start;
-      } else if (this.currentAnimationStart === 0) {
-        return;
       }
 
       const t = Math.min(1, Math.max(0, (timestamp - start) / duration));
@@ -69,7 +81,7 @@ export default class Animation extends Widget {
       if (t < 1) {
         requestAnimationFrame(step);
       } else {
-        this.currentAnimationStart = 0;
+        this.running = false;
       }
     };
 
@@ -80,7 +92,7 @@ export default class Animation extends Widget {
   render() {
     return (
       <div class="animation interactive">
-        {this.currentAnimationStart ? (
+        {this.running ? (
           <span class="icon-ui-pause" onclick={() => this.stop()}></span>
         ) : (
           <span class="icon-ui-play" onclick={() => this.play()}></span>

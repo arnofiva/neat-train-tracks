@@ -107,6 +107,6 @@ export const tracks2D = new GraphicsLayer({
   elevationInfo: {
     mode: "on-the-ground"
   },
-  opacity: 0.5
-  // visible: false
+  opacity: 0.5,
+  visible: false
 });

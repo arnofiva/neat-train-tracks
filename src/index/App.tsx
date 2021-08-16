@@ -142,7 +142,7 @@ export default class App extends Widget {
     );
   }
 
-  updateProfiles = promiseUtils.debounce(async () => {
+  private updateProfiles = promiseUtils.debounce(async () => {
     tracks2D.removeAll();
     tracks3D.removeAll();
 
