@@ -93,9 +93,9 @@ export default class App extends Widget {
             <div class="column-24 tablet-column-9 phone-column-6">
               <h1>Zurich - Milan by Train</h1>
 
-              <div class="column-6 tablet-column-3 phone-column-3">{selector}</div>
+              <div class="column-6 tablet-column-3 phone-column-4">{selector}</div>
 
-              <div class="pre-12 column-6 tablet-column-6 phone-column-3 text-right">
+              <div class="pre-12 column-6 tablet-column-6 phone-column-2 text-right">
                 {this.layout !== "tablet" ? timeDistance : <div></div>}
               </div>
             </div>
@@ -106,23 +106,13 @@ export default class App extends Widget {
 
         <div class="footer">
           <div class="grid-container">
-            <div class="pre-6 column-18 tablet-column-12 phone-column-6">{this.layout === "desktop" ? sections : <div></div>}</div>
+            <div class="column-4 tablet-column-2 phone-column-1">{animation}</div>
 
-            <div class="column-24 tablet-pre-3 tablet-column-9 phone-column-6">{this.layout === "tablet" ? sections : <div></div>}</div>
-
-            <div class="column-12 tablet-column-6 phone-column-2">{this.layout === "phone" ? animation : <div></div>}</div>
-
-            <div class="column-12 tablet-column-6 phone-column-4">{this.layout === "phone" ? sections : <div></div>}</div>
-
-            {/* Footer 2nd part */}
-
-            <div class="column-6 tablet-column-3 phone-column-6">{this.layout !== "phone" ? animation : <div></div>}</div>
-
-            <div class="column-18 tablet-column-9 phone-column-6">
-              <div class="interactive">{profiles}</div>
-            </div>
+            <div class="column-20 tablet-column-10 phone-column-5">{sections}</div>
           </div>
         </div>
+
+        {profiles}
       </div>
     );
   }

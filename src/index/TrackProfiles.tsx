@@ -114,7 +114,7 @@ export default class TrackProfiles extends Widget {
   }
 
   render() {
-    return <div>{this.activeEP.render()}</div>;
+    return <div class="profile interactive">{this.activeEP.render()}</div>;
   }
 
   private updateProfiles() {
