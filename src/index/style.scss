@@ -71,21 +71,44 @@ body,
 
 .track-selector {
 
-  a {
-    white-space: nowrap;
+  .btn {
+    border-radius: 0.75em;
+    margin-right: 1em;
+    background: none;
     color: white;
-    cursor: pointer;
-    text-decoration: none !important;
   }
 
-  .active {
-    &::after {
-      @include icon-font-styles();
-      content: "\f111";
+  .fast {
+
+    // color: $fast-color-faded;
+    border-color: $fast-color-faded;
+
+    &.active {
+      border-color: $fast-color;
+      background-color: $fast-color-faded;
+    }
+
+    &:hover {
+      color: $fast-color-faded;
+      background-color: $fast-color;
+      border-color: $fast-color;
     }
   }
 
-  padding-bottom: 50px;
+  .slow {
+    border-color: $slow-color-faded;
+
+    &.active {
+      border-color: $slow-color;
+      background-color: $slow-color-faded;
+    }
+
+    &:hover {
+      color: $slow-color-faded;
+      background-color: $slow-color;
+      border-color: $slow-color;
+    }
+  }
 }
 
 .time-distance {
