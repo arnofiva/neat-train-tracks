@@ -9,7 +9,6 @@ import promiseUtils = require("esri/core/promiseUtils");
 import { slowColorFaded, fastColorFaded, Section } from "./constants";
 import { tracks2D, tracks3D } from "./layers";
 import TimeDistance from "./TimeDistance";
-import Legend from "./Legend";
 import Animation from "./Animation";
 
 export interface AppProps extends __esri.WidgetProperties {
@@ -31,9 +30,6 @@ export default class App extends Widget {
   animation: Animation;
 
   @property()
-  legend: Legend;
-
-  @property()
   scene = scene;
 
   @property()
@@ -50,10 +46,6 @@ export default class App extends Widget {
 
     this.timeDistance = new TimeDistance({
       profile: this.trackProfiles
-    });
-
-    this.legend = new Legend({
-      selector: this.trackProfiles.trackSelector
     });
 
     this.animation = new Animation({
@@ -91,7 +83,6 @@ export default class App extends Widget {
 
     const timeDistance = this.timeDistance.render();
     const selector = this.trackProfiles.trackSelector.render();
-    const legend = this.legend.render();
     const sections = this.trackProfiles.sectionSelector.render();
     const animation = this.animation.render();
 
@@ -115,19 +106,13 @@ export default class App extends Widget {
 
         <div class="footer">
           <div class="grid-container">
-            <div class="column-4 tablet-column-6 phone-column-1">{this.layout === "desktop" ? legend : <div></div>}</div>
+            <div class="pre-6 column-18 tablet-column-12 phone-column-6">{this.layout === "desktop" ? sections : <div></div>}</div>
 
-            <div class="pre-2 column-18 tablet-column-6 phone-column-2">{this.layout === "desktop" ? sections : <div></div>}</div>
+            <div class="column-24 tablet-pre-3 tablet-column-9 phone-column-6">{this.layout === "tablet" ? sections : <div></div>}</div>
 
-            <div class="column-12 tablet-column-3 phone-column-3">{this.layout === "tablet" ? legend : <div></div>}</div>
+            <div class="column-12 tablet-column-6 phone-column-2">{this.layout === "phone" ? animation : <div></div>}</div>
 
-            <div class="column-12 tablet-column-9 phone-column-3">{this.layout === "tablet" ? sections : <div></div>}</div>
-
-            <div class="column-8 tablet-column-4 phone-column-2">{this.layout === "phone" ? animation : <div></div>}</div>
-
-            <div class="column-8 tablet-column-4 phone-column-2">{this.layout === "phone" ? sections : <div></div>}</div>
-
-            <div class="column-8 tablet-column-4 phone-column-2 text-right">{this.layout === "phone" ? legend : <div></div>}</div>
+            <div class="column-12 tablet-column-6 phone-column-4">{this.layout === "phone" ? sections : <div></div>}</div>
 
             {/* Footer 2nd part */}
 
