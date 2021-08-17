@@ -24,12 +24,12 @@ export class Section {
     3 * 60 + 17, // 2h 58min
     new Camera({
       position: {
-        longitude: 7.0337771,
-        latitude: 45.12086495,
-        z: 159916.61637
+        longitude: 6.85406812,
+        latitude: 44.13581863,
+        z: 375576.0512
       },
-      heading: 48.74,
-      tilt: 51.89
+      heading: 33.39,
+      tilt: 38.91
     }),
     new Camera({
       position: {
@@ -88,8 +88,8 @@ export class Section {
   static readonly GOTTHARD = new Section(
     "Gotthard",
     2016,
-    72, // 1h 12min
     112, // 1h 52min
+    72, // 1h 12min
     new Camera({
       position: {
         longitude: 7.61486774,
