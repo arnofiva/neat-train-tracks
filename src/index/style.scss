@@ -66,6 +66,7 @@ body,
 
 .footer {
   background-color: rgb(0, 0, 0, 0);
+  margin-bottom: 15px;
 }
 
 .profile {
@@ -148,18 +149,7 @@ body,
 
 }
 
-.animation {
-  text-align: center;
-  font-size: 3em;
-  cursor: pointer;
-}
-
-
-
-
-.track-sections {
-
-  text-align: right;
+.animation, .track-sections {
 
   .btn {
     border-radius: 0.75em;
@@ -169,16 +159,37 @@ body,
 
     border-color: $black;
 
+    &:hover {
+      background-color: $off-black;
+      color: $off-white;
+    }
+
+    &:active {
+      background-color: $black;
+      // background-color:green;
+      color: $off-white;
+    }
+
     &.active {
       background-color: $black;
       color: $off-white;
     }
-
-    &:hover {
-      background-color: $off-black;
-    }
   }
 
+}
+
+.animation {
+  .btn {
+    span {
+      margin-left: 15px;
+      margin-right: 10px;
+    }
+  }
+}
+
+.track-sections {
+
+  text-align: right;
 
 }
 

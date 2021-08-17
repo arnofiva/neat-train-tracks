@@ -90,9 +90,13 @@ export default class Animation extends Widget {
     return (
       <div class="animation interactive">
         {this.running ? (
-          <span class="icon-ui-pause" onclick={() => this.stop()}></span>
+          <button class="btn btn-small" onclick={() => this.stop()}>
+            <span class="icon-ui-pause"></span>
+          </button>
         ) : (
-          <span class="icon-ui-play" onclick={() => this.play()}></span>
+          <button class="btn btn-small" onclick={() => this.play()}>
+            <span class="icon-ui-play"></span>
+          </button>
         )}
       </div>
     );

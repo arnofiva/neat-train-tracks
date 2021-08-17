@@ -154,25 +154,26 @@ export default class App extends Widget {
     if (860 <= width) {
       this.layout = "desktop";
       this.scene.view.padding = {
-        top: 50,
-        left: 220,
+        top: 0,
+        left: 0,
+        right: 0,
         bottom: 200
       };
     } else if (480 <= width) {
       this.layout = "tablet";
       this.scene.view.padding = {
         top: 60,
-        left: 40,
-        right: 40,
-        bottom: 150
+        left: 0,
+        right: 0,
+        bottom: 200
       };
     } else {
       this.layout = "phone";
       this.scene.view.padding = {
         top: 60,
-        // left: 50,
-        // right: 50,
-        bottom: 150
+        left: 0,
+        right: 0,
+        bottom: 200
       };
     }
   }
