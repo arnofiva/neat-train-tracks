@@ -11,7 +11,10 @@ export const fastColorFaded = new Color("#007f00");
 export const fastColor = new Color("#11dd00");
 //export const fastColor = new Color("white");
 
-// Source: https://www.uvek.admin.ch/uvek/de/home/verkehr/gotthard-basistunnel.html
+// Sources:
+// Current SBB Fahrplan
+// https://www.uvek.admin.ch/uvek/de/home/verkehr/gotthard-basistunnel.html
+// https://de.wikipedia.org/wiki/Gotthard-Basistunnel
 
 export class Section {
   static readonly ALL = new Section(
@@ -51,8 +54,8 @@ export class Section {
   static readonly ZIMMERBERG = new Section(
     "Zimmerberg",
     2002,
-    10, // 10min
-    5, // 3h 17min
+    30, // 30min
+    27, // 27min
     new Camera({
       position: {
         longitude: 8.24264653,
@@ -85,8 +88,8 @@ export class Section {
   static readonly GOTTHARD = new Section(
     "Gotthard",
     2016,
-    50, // 50min
-    20, // 20min
+    72, // 1h 12min
+    112, // 1h 52min
     new Camera({
       position: {
         longitude: 7.61486774,
@@ -119,8 +122,8 @@ export class Section {
   static readonly CENERI = new Section(
     "Ceneri",
     2020,
-    20, // 4h 22min
-    10, // 3h 17min
+    34, // 34min
+    14, // 14min
     new Camera({
       position: {
         longitude: 8.96950104,

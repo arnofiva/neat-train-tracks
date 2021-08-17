@@ -25,7 +25,7 @@ export default class TimeDistance extends Widget {
 
     return (
       <div class="time-distance">
-        <h4>Time</h4>
+        <h4>Travel Time</h4>
         <span>
           {hours ? `${hours}h ` : ""}
           {minutes}min
