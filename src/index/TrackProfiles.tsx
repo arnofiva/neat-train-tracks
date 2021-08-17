@@ -27,14 +27,14 @@ function createProfile(color: Color) {
     view,
     profiles: [
       {
-        type: "input",
-        viewVisualizationEnabled: true,
-        color
-      },
-      {
         type: "ground",
         viewVisualizationEnabled: false,
         color: elevationColor
+      },
+      {
+        type: "input",
+        viewVisualizationEnabled: true,
+        color
       }
     ],
     visibleElements
