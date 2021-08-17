@@ -78,38 +78,37 @@ body,
     border-radius: 0.75em;
     margin-right: 0.6em;
     background: none;
-    color: white;
   }
 
   .fast {
 
-    // color: $fast-color-faded;
-    border-color: $fast-color-faded;
+    color: $fast-color;
+    border-color: $fast-color;
 
     &.active {
-      border-color: $fast-color;
-      background-color: $fast-color-faded;
+      background-color: $fast-color;
+      color: $off-white;
     }
 
     &:hover {
-      color: $fast-color-faded;
-      background-color: $fast-color;
-      border-color: $fast-color;
+      color: $off-white;
+      background-color: $fast-color-faded;
     }
   }
 
   .slow {
-    border-color: $slow-color-faded;
+
+    color: $slow-color;
+    border-color: $slow-color;
 
     &.active {
-      border-color: $slow-color;
-      background-color: $slow-color-faded;
+      background-color: $slow-color;
+      color: $off-white;
     }
 
     &:hover {
-      color: $slow-color-faded;
-      background-color: $slow-color;
-      border-color: $slow-color;
+      color: $off-white;
+      background-color: $slow-color-faded;
     }
   }
 }
@@ -166,17 +165,17 @@ body,
     border-radius: 0.75em;
     margin-right: 0.6em;
     background: none;
-    color: white;
+    color: $black;
 
-    border-color: white;
+    border-color: $black;
 
     &.active {
-      background-color: $transparent-black;
+      background-color: $black;
       color: $off-white;
     }
 
     &:hover {
-      background-color: $black;
+      background-color: $off-black;
     }
   }
 
