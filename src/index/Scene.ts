@@ -20,7 +20,7 @@ const view = new SceneView({
   map,
   camera: Section.ALL.camera,
 
-  // qualityProfile: "high",
+  qualityProfile: "high",
 
   environment: {
     background: {
