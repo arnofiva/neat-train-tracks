@@ -121,7 +121,7 @@ export default class App extends Widget {
     tracks2D.removeAll();
     tracks3D.removeAll();
 
-    const graphics = this.tracks.fadedTracks(this.trackProfiles.showNew, this.trackProfiles.section);
+    const graphics = this.tracks.inactiveSection(this.trackProfiles.section, !this.trackProfiles.showNew);
 
     tracks2D.addMany(graphics.map((g) => g.clone()));
     tracks3D.addMany(graphics);

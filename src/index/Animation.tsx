@@ -5,9 +5,6 @@ import TrackProfiles from "./TrackProfiles";
 import { scene } from "./Scene";
 import lerp from "./lerp";
 
-import anime from "animejs";
-import { views } from "esri/views/View";
-
 export interface AnimationProps extends __esri.WidgetProperties {
   profiles: TrackProfiles;
 }

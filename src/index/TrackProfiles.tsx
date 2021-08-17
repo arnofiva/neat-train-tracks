@@ -119,12 +119,13 @@ export default class TrackProfiles extends Widget {
 
   private updateProfiles() {
     const showNew = this.showNew;
+
+    this.slowEP.input = this.tracks.activeRoute(this.section, false);
+    this.fastEP.input = this.tracks.activeRoute(this.section, true);
+
     this.slowEP.profiles.forEach((p) => {
       p.viewVisualizationEnabled = !showNew;
     });
-    this.slowEP.input = this.tracks.slowEPInput(this.section);
-
-    this.fastEP.input = this.tracks.fastEPInput(this.section);
     this.fastEP.profiles.forEach((p) => {
       p.viewVisualizationEnabled = showNew;
     });
