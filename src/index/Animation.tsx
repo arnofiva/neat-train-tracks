@@ -38,8 +38,13 @@ export default class Animation extends Widget {
     });
 
     this.profiles.watch("section", () => {
+      this.running = false;
       this.cameraTracking = true;
       this.profiles.activeEP.viewModel.hoveredChartPosition = undefined as any;
+    });
+
+    this.profiles.watch("showNew", () => {
+      this.running = false;
     });
   }
 
