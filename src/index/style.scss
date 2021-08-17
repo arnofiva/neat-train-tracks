@@ -73,10 +73,13 @@ body,
   padding-bottom: 15px;
 }
 
+.btn {
+  border-radius: 0.5em;
+}
+
 .track-selector {
 
   .btn {
-    border-radius: 0.75em;
     margin-right: 0.6em;
     background: none;
   }
@@ -152,7 +155,6 @@ body,
 .animation, .track-sections {
 
   .btn {
-    border-radius: 0.75em;
     margin-right: 0.6em;
     background: none;
     color: $black;
