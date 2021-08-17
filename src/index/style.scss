@@ -86,14 +86,14 @@ body,
     color: $fast-color;
     border-color: $fast-color;
 
-    &.active {
-      background-color: $fast-color;
-      color: $off-white;
-    }
-
     &:hover {
       color: $off-white;
       background-color: $fast-color-faded;
+    }
+
+    &.active, &:active {
+      background-color: $fast-color;
+      color: $off-white;
     }
   }
 
@@ -102,14 +102,14 @@ body,
     color: $slow-color;
     border-color: $slow-color;
 
-    &.active {
-      background-color: $slow-color;
-      color: $off-white;
-    }
-
     &:hover {
       color: $off-white;
       background-color: $slow-color-faded;
+    }
+
+    &.active, &:active {
+      background-color: $slow-color;
+      color: $off-white;
     }
   }
 }
