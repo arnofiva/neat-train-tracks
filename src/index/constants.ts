@@ -55,30 +55,30 @@ export class Section {
     5, // 3h 17min
     new Camera({
       position: {
-        longitude: 8.4723133,
-        latitude: 47.30302987,
-        z: 11415.02525
+        longitude: 8.24264653,
+        latitude: 47.53887505,
+        z: 18472.11098
       },
-      heading: 55.49,
-      tilt: 27.64
+      heading: 140.05,
+      tilt: 63.2
     }),
     new Camera({
       position: {
-        longitude: 8.40855124,
-        latitude: 47.43665308,
-        z: 5978.65164
+        longitude: 8.46550426,
+        latitude: 47.46465694,
+        z: 3860.20457
       },
-      heading: 123.8,
-      tilt: 66.61
+      heading: 157.15,
+      tilt: 75.24
     }),
     new Camera({
       position: {
-        longitude: 8.45039066,
-        latitude: 47.3131689,
-        z: 3667.26979
+        longitude: 8.38952282,
+        latitude: 47.14397143,
+        z: 4818.37549
       },
-      heading: 99.26,
-      tilt: 69.22
+      heading: 67.77,
+      tilt: 68.89
     })
   );
 
@@ -89,49 +89,31 @@ export class Section {
     20, // 20min
     new Camera({
       position: {
-        longitude: 8.27547022,
-        latitude: 46.01335477,
-        z: 35950.15826
+        longitude: 7.61486774,
+        latitude: 47.73892,
+        z: 50343.47143
       },
-      heading: 37.04,
-      tilt: 65.7
+      heading: 142.87,
+      tilt: 68.45
     }),
     new Camera({
       position: {
-        longitude: 8.09621571,
-        latitude: 46.95660722,
-        z: 45765.19612
+        longitude: 8.15157539,
+        latitude: 47.33561923,
+        z: 9190.3283
       },
-      heading: 106.83,
-      tilt: 38.07
+      heading: 138.24,
+      tilt: 76.05
     }),
     new Camera({
       position: {
-        longitude: 8.43732082,
-        latitude: 46.48417582,
-        z: 38082.73353
+        longitude: 8.85945086,
+        latitude: 46.45718618,
+        z: 9750.45963
       },
-      heading: 104.93,
-      tilt: 42.46
+      heading: 165.51,
+      tilt: 74.57
     })
-    // new Camera({
-    //   position: {
-    //     longitude: 8.51109290,
-    //     latitude: 46.45750037,
-    //     z: 15605.80733
-    //   },
-    //   heading: 26.58,
-    //   tilt: 66.73
-    // }),
-    // new Camera({
-    //   position: {
-    //     longitude: 9.21189998,
-    //     latitude: 46.22905008,
-    //     z: 10283.89300
-    //   },
-    //   heading: 307.62,
-    //   tilt: 70.09
-    // })
   );
 
   static readonly CENERI = new Section(
@@ -141,30 +123,30 @@ export class Section {
     10, // 3h 17min
     new Camera({
       position: {
-        longitude: 8.90117572,
-        latitude: 46.24280383,
-        z: 5614.57732
+        longitude: 8.96950104,
+        latitude: 46.44303121,
+        z: 19888.17991
       },
-      heading: 156.83,
-      tilt: 68.33
+      heading: 178.81,
+      tilt: 61.68
     }),
     new Camera({
       position: {
-        longitude: 9.02926596,
-        latitude: 46.29802574,
-        z: 5882.2629
+        longitude: 9.04456304,
+        latitude: 46.33253886,
+        z: 8613.94608
       },
-      heading: 189.93,
-      tilt: 66.43
+      heading: 190.9,
+      tilt: 65.89
     }),
     new Camera({
       position: {
-        longitude: 8.85111269,
-        latitude: 46.13497995,
-        z: 6882.37275
+        longitude: 8.88002108,
+        latitude: 46.11574327,
+        z: 3929.85347
       },
-      heading: 146.89,
-      tilt: 60.19
+      heading: 160.46,
+      tilt: 73.37
     })
   );
 
