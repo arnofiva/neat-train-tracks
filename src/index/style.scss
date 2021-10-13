@@ -123,9 +123,13 @@ body,
     margin: 0.5rem 0 0 0;
   }
 
-  span {
+  > span {
     white-space: nowrap;
     font-size: 1.5em;
+
+    .units {
+      font-size: 0.6em;
+    }
   }
 }
 

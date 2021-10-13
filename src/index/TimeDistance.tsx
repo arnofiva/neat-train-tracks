@@ -23,15 +23,30 @@ export default class TimeDistance extends Widget {
 
     const hours = Math.floor(time / 60);
 
+    const timeNode = hours ? (
+      <span>
+        {hours}
+        <span class="units">h</span>
+        {minutes}
+        <span class="units">min</span>
+      </span>
+    ) : (
+      <span>
+        <span class="units"></span>
+        {minutes}
+        <span class="units">min</span>
+      </span>
+    );
+
     return (
       <div class="time-distance">
         <h4>Travel Time</h4>
-        <span>
-          {hours ? `${hours}h ` : ""}
-          {minutes}min
-        </span>
+        {timeNode}
         <h4>Distance</h4>
-        <span>{this.profile.distance.toFixed(1)}km</span>
+        <span>
+          {this.profile.distance.toFixed(1)}
+          <span class="units">km</span>
+        </span>
       </div>
     );
   }
