@@ -13,7 +13,7 @@ export default class SectionSelector extends Widget {
       const btnClass = `btn btn-small ${this.section === section ? "active" : ""} ${section.label.toLowerCase()}`;
       return (
         <button onclick={() => this.selectSection(section)} class={btnClass}>
-          {section.label} ({section.year})
+          {section.label} {section !== Section.ALL ? `(${section.year})` : ""}
         </button>
       );
     });
