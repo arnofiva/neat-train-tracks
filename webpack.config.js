@@ -27,9 +27,7 @@ module.exports = {
     publicPath: ''
   },
   devServer: {
-    contentBase: path.join(__dirname, 'dist'),
     compress: true,
-    port: 3001,
   },
   externals: [
     /^esri\/.*/,
@@ -53,20 +51,12 @@ module.exports = {
         },
         exclude: /node_modules/
       },
-      // {
-      //   test: /\.css$/,
-      //   use: [
-      //     MiniCssExtractPlugin.loader,
-      //     "css-loader",
-      //   ]
-      // },
       {
         test: /\.s[ac]ss$/i,
         use: [
-          // process.env.NODE_ENV !== "production"
-          //   ? "style-loader"
-          //   : MiniCssExtractPlugin.loader,
-          MiniCssExtractPlugin.loader,
+          process.env.NODE_ENV !== "production"
+            ? "style-loader"
+            : MiniCssExtractPlugin.loader,
           {
             loader: "css-loader",
           },
@@ -93,7 +83,7 @@ module.exports = {
         options: {
           name: '[path][name].[ext]',
           outputPath: 'static/assets/',
-          publicPath: '/static/assets/',
+          publicPath: 'static/assets/',
         },
       },
     ]
@@ -105,8 +95,8 @@ module.exports = {
         '!.git/**',]
     }),
     ...entries.map(entry => new HtmlWebpackPlugin({
-      title: 'Zurich - Milan by Train',
-      description: 'Zurich - Milan by Train',
+      title: 'ArcGIS API for JavaScript Template',
+      description: 'ArcGIS API for JavaScript Template',
       template: `./src/template.js`,
       filename: `${entry}.html`,
       entry,

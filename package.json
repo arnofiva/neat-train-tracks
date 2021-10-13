@@ -1,7 +1,7 @@
 {
   "private": true,
   "devDependencies": {
-    "arcgis-js-api": "^4.20.1",
+    "arcgis-js-api": "^4.21.2",
     "calcite-web": "github:Esri/calcite-web#v1.2.5",
     "clean-webpack-plugin": "^3.0.0",
     "copy-webpack-plugin": "^8.0.0",
@@ -15,15 +15,15 @@
     "resolve-url-loader": "^3.1.2",
     "sass": "^1.35.2",
     "sass-loader": "^12.1.0",
-    "serve": "^11.3.2",
+    "serve": "^12.0.1",
     "source-map-loader": "^2.0.0",
     "style-loader": "^3.1.0",
     "ts-loader": "~8.0.11",
-    "tslib": "~2.3.1",
+    "tslib": "~2.0.3",
     "typescript": "~4.1.2",
     "webpack": "^5.45.1",
     "webpack-cli": "^4.1.0",
-    "webpack-dev-server": "^3.11.0"
+    "webpack-dev-server": "^4.3.1"
   },
   "scripts": {
     "build": "webpack --mode production",
