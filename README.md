@@ -4,7 +4,7 @@ An interactive 3D web application built with the [ArcGIS API for JavaScript](dev
 
 It highlights the new route that originated from the [NEAT](https://en.wikipedia.org/wiki/NRLA) project, together with the time savings resulting from the three major tunnels going through the Swiss alps.
 
-[![screenshot](./screenshot.png)](https://arnofiva.github.io/neat-train-tracks)
+[![screenshot](./public/screenshot.png)](https://arnofiva.github.io/neat-train-tracks)
 
 The data for the train tracks has been provided by the [Swiss Federal Railways SBB](https://sbb.ch).
 
