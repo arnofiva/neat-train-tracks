@@ -91,10 +91,17 @@ export default class App extends Widget {
         <div class="wrapper">
           <div class="grid-container">
             <div class="column-24 tablet-column-9 phone-column-6">
-              <h1>Zurich - Milan by Train</h1>
-
+              <h1>
+                Zurich - Milan by Train
+                <br />
+                <span>
+                  Tracks provided by{" "}
+                  <a href="https://sbb.ch" target="_blank">
+                    SBB
+                  </a>
+                </span>
+              </h1>
               <div class="column-6 tablet-column-3 phone-column-4">{selector}</div>
-
               <div class="pre-12 column-6 tablet-column-6 phone-column-2 text-right">
                 {this.layout !== "tablet" ? timeDistance : <div></div>}
               </div>

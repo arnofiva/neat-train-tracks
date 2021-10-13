@@ -64,6 +64,22 @@ body,
   flex-direction: column;
 }
 
+h1 {
+  span {
+    font-size: 0.4em;
+    pointer-events: all;
+  }
+}
+
+a {
+  color: $black;
+  // text-decoration: underline;
+
+  &:hover {
+    color: $off-black;
+  }
+}
+
 .footer {
   background-color: rgb(0, 0, 0, 0);
   margin-bottom: 15px;
@@ -90,7 +106,6 @@ body,
     border-color: $fast-color;
 
     &:hover {
-      color: $off-white;
       background-color: $fast-color-faded;
     }
 
@@ -106,7 +121,6 @@ body,
     border-color: $slow-color;
 
     &:hover {
-      color: $off-white;
       background-color: $slow-color-faded;
     }
 

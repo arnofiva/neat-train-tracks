@@ -26,7 +26,7 @@ export default class TimeDistance extends Widget {
     const timeNode = hours ? (
       <span>
         {hours}
-        <span class="units">h</span>
+        <span class="units">h</span>&nbsp;
         {minutes}
         <span class="units">min</span>
       </span>
